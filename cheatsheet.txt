@@ -1,0 +1,3 @@
+# cheatsheet.nvim
+Open cheatsheet in floating window | :CheatSheetFloat
+Open cheatsheet in Telescope | :CheatSheetTelescope
