@@ -26,7 +26,9 @@ M.pick_cheat = function(opts)
                     -- a small width for the respective cheatcode column is used.
                     -- But the cheatcode is what we *don't* know and the description is
                     -- what we already know. So show description first for better UX.
-                    local width = utils.get_default(opts.results_width, config.values.results_width)
+                    local width = utils.get_default(
+                        opts.results_width, config.values.results_width
+                    )
                     local cols = vim.o.columns
                     local tel_win_width = math.floor(cols * width)
                     local cheatcode_width = math.floor(cols * 0.25)
@@ -35,8 +37,8 @@ M.pick_cheat = function(opts)
                     local displayer = entry_display.create {
                         separator = " ▏",
                         items = {
-                            { width = tel_win_width -  cheatcode_width}, -- description
-                            { remaining = true } -- cheatcode
+                            { width = tel_win_width - cheatcode_width }, -- description
+                            { remaining = true }, -- cheatcode
                         },
                     }
 

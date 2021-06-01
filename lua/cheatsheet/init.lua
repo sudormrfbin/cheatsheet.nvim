@@ -36,9 +36,13 @@ M.get_cheats = function()
     local cheats = {}
     for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
         for _, line in ipairs(path.readlines(cheatfile)) do
-            local description, cheatcode = string.match(line, '^([^#]-)%s*|%s*(.-)%s*$')
+            local description, cheatcode = string.match(
+                line, '^([^#]-)%s*|%s*(.-)%s*$'
+            )
             if description and cheatcode then
-                table.insert(cheats, {description = description, cheatcode = cheatcode})
+                table.insert(
+                    cheats, { description = description, cheatcode = cheatcode }
+                )
             end
         end
     end
