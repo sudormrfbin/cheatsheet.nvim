@@ -30,18 +30,44 @@ M.get_cheatsheet_files = function()
 end
 
 -- Aggregates cheats from cheatsheets and returns a structured repr.
--- Ignores comments and newlines.
--- @return array of {description, cheatcode} for each cheat
+-- Ignores comments and newlines (except for metadata comments).
+-- @return array of {description, cheatcode, section, {tags}} for each cheat
 M.get_cheats = function()
+    local section_pat = '^##%s*(%S*)'
+    local tags_pat = '^##.*@%S*'
+    local cheatline_pat = '^([^#]-)%s*|%s*(.-)%s*$'
+
     local cheats = {}
     for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
+        local section = "Default"
+        local tags = {}
         for _, line in ipairs(path.readlines(cheatfile)) do
-            local description, cheatcode = string.match(
-                line, '^([^#]-)%s*|%s*(.-)%s*$'
-            )
+            -- prase section if line is meatadata comment
+            local maybe_section = line:match(section_pat)
+            if maybe_section then
+                section = maybe_section
+                -- reset tags since a section refers to a new plugin
+                tags = {}
+            end
+
+            -- parse tags
+            if line:match(tags_pat) then
+                tags = {}
+                for tag in line:gmatch('@(%S*)') do
+                    table.insert(tags, tag)
+                end
+            end
+
+            -- parse normal cheatline
+            local description, cheatcode = line:match(cheatline_pat)
             if description and cheatcode then
                 table.insert(
-                    cheats, { description = description, cheatcode = cheatcode }
+                    cheats, {
+                        section = section,
+                        description = description,
+                        tags = tags,
+                        cheatcode = cheatcode,
+                    }
                 )
             end
         end

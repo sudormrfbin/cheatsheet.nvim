@@ -32,12 +32,17 @@ M.pick_cheat = function(opts)
                     local cols = vim.o.columns
                     local tel_win_width = math.floor(cols * width)
                     local cheatcode_width = math.floor(cols * 0.25)
+                    local section_width = 10
 
                     -- NOTE: the width calculating logic is not exact, but approx enough
                     local displayer = entry_display.create {
                         separator = " ▏",
                         items = {
-                            { width = tel_win_width - cheatcode_width }, -- description
+                            { width = section_width }, -- section
+                            {
+                                width = tel_win_width - cheatcode_width
+                                    - section_width,
+                            }, -- description
                             { remaining = true }, -- cheatcode
                         },
                     }
@@ -45,17 +50,23 @@ M.pick_cheat = function(opts)
                     local function make_display(ent)
                         return displayer {
                             -- text, highlight group
+                            { ent.value.section, "cheatMetadataSection" },
                             { ent.value.description, "cheatDescription" },
                             { ent.value.cheatcode, "cheatCode" },
                         }
                     end
+
+                    local tags = table.concat(entry.tags, ' ')
 
                     return {
                         value = entry,
                         -- generate the string that user sees as an item
                         display = make_display,
                         -- queries are matched against ordinal
-                        ordinal = entry.description .. ' ' .. entry.cheatcode,
+                        ordinal = string.format(
+                            '%s %s %s %s', entry.section, entry.description,
+                                tags, entry.cheatcode
+                        ),
                     }
                 end,
             },
