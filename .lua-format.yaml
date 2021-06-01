@@ -6,3 +6,4 @@ break_after_operator: false
 spaces_inside_table_braces: true
 align_args: false
 align_parameter: false
+chop_down_parameter: true
