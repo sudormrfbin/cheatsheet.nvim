@@ -14,7 +14,4 @@ syn match cheatCode '.*' contained
 syn region cheatCodeRegion start=/|/ end=/$/ contains=cheatCode
 syn region cheatLine start=/\v[^/#]/ end=/$/ keepend contains=cheatDescription,cheatSeparator,cheatCodeRegion
 
-hi def link cheatComment Comment
-hi def link cheatDescription String
-hi def link cheatSeparator Keyword
-hi def link cheatCode Statement
+" highlights are defined in plugin file
