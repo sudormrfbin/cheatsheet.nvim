@@ -1,0 +1,102 @@
+local path = require('plenary.path')
+
+local M = {}
+
+-- taken from https://github.com/neovim/neovim/pull/13778
+-- Given an array remove the duplicated items
+-- @param array the array to dedupe
+-- @return deduped array
+local function dedupe_array(array)
+    local result = {}
+    local seen = {}
+
+    for _, item in ipairs(array) do
+        if not seen[item] then
+            table.insert(result, item)
+            seen[item] = true
+        end
+    end
+
+    return result
+end
+
+-- Get `cheatsheet.txt` files from any directory in runtimepath
+-- @return array of filepaths
+M.get_cheatsheet_files = function()
+    local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
+    -- https://github.com/neovim/neovim/issues/14294
+    -- returned table may have duplicated entries
+    return dedupe_array(cheats)
+end
+
+-- Aggregates cheats from cheatsheets and returns a structured repr.
+-- Ignores comments and newlines.
+-- @return array of {description, cheatcode} for each cheat
+M.get_cheats = function()
+    local cheats = {}
+    for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
+        for _, line in ipairs(path.readlines(cheatfile)) do
+            local description, cheatcode = string.match(line, '^([^#]-)%s*|%s*(.-)%s*$')
+            if description and cheatcode then
+                table.insert(cheats, {description = description, cheatcode = cheatcode})
+            end
+        end
+    end
+
+    return cheats
+end
+
+M.show_cheats_float = function()
+    -- handle to an unlisted scratch buffer
+    local bufhandle = vim.api.nvim_create_buf(false, true)
+    if bufhandle == 0 then
+        vim.api.nvim_err_writeln("cheatsheet: Could not open temp buffer")
+        return
+    end
+
+    -- taken from plenary.nvim for centering the floating window
+    local width = math.floor(vim.o.columns * 0.7)
+    local height = math.floor(vim.o.lines * 0.7)
+
+    local top = math.floor(((vim.o.lines - height) / 2) - 1)
+    local left = math.floor((vim.o.columns - width) / 2)
+
+    local float_opts = {
+        relative = 'editor',
+        row = top,
+        col = left,
+        width = width,
+        height = height,
+        border = "single",
+    }
+
+    local winhandle = vim.api.nvim_open_win(bufhandle, true, float_opts)
+    if winhandle == 0 then
+        vim.api.nvim_err_writeln("cheatsheet: Could not open floating window")
+        return
+    end
+
+    for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
+        vim.api.nvim_command("$read " .. cheatfile)
+        -- add a newline after every concat (puts the expression '' at file end)
+        vim.api.nvim_command("$put =''")
+    end
+
+    vim.api.nvim_buf_set_virtual_text(
+        bufhandle, 0, 0, { { "Press q to close", "PreProc" } }, {}
+    )
+
+    vim.bo.filetype = 'cheatsheet'
+    vim.bo.buftype = 'nofile' -- do not consider buffer contents as a file
+    vim.bo.modifiable = false
+    vim.bo.buflisted = false -- do not show in :buffers
+    vim.bo.swapfile = false
+    vim.wo.number = false
+    vim.wo.relativenumber = false
+
+    vim.api.nvim_buf_set_keymap(
+        0, 'n', 'q', ':close<CR>', { noremap = true, silent = true }
+    )
+end
+
+return M
