@@ -3,6 +3,10 @@ command -bar -nargs=0 CheatsheetEdit lua require'cheatsheet'.edit_user_cheatshee
 command -bar -nargs=0 CheatsheetFloat lua require'cheatsheet'.show_cheatsheet_float()
 command -bar -nargs=0 CheatsheetTelescope lua require'cheatsheet'.show_cheatsheet_telescope()
 
+if mapcheck("<leader>?", "n") == ""
+  nnoremap <unique> <leader>? :<C-U>Cheatsheet<CR>
+endif
+
 highlight default link cheatComment Comment
 highlight default link cheatMetadataComment Comment
 highlight default link cheatMetadataTag Include

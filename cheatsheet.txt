@@ -1,5 +1,5 @@
 ## cheatsheet @quick @reference
-Open                                | :Cheatsheet
+Open                                | :Cheatsheet, <leader>?
 Open in floating window             | :CheatsheetFloat
 Open in Telescope                   | :CheatsheetTelescope
 Open user cheatsheet                | :CheatsheetEdit
