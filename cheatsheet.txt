@@ -1,3 +1,6 @@
 ## cheatsheet @quick @reference
-Open in floating window | :CheatSheetFloat
-Open in Telescope | :CheatSheetTelescope
+Open                                | :Cheatsheet
+Open in floating window             | :CheatsheetFloat
+Open in Telescope                   | :CheatsheetTelescope
+Open user cheatsheet                | :CheatsheetEdit
+Open user cheatsheet from Telescope | <C-E>
