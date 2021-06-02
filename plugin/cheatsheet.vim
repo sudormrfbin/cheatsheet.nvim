@@ -1,5 +1,5 @@
-command -bar -nargs=0 CheatSheetFloat lua require'cheatsheet'.show_cheats_float()
-command -bar -nargs=0 CheatSheetTelescope lua require'cheatsheet.telescope'.pick_cheat()
+command -bar -nargs=0 CheatsheetFloat lua require'cheatsheet'.show_cheats_float()
+command -bar -nargs=0 CheatsheetTelescope lua require'cheatsheet.telescope'.pick_cheat()
 
 highlight default link cheatComment Comment
 highlight default link cheatMetadataComment Comment
