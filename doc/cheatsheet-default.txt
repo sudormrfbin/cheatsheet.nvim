@@ -1,0 +1,370 @@
+# Modified from https://github.com/lifepillar/vim-cheat40/blob/master/cheat40.txt
+
+## file-vim
+New untitled document                | :enew
+New/open file or dir                 | :e …
+Split open (horizontal)              | :sp …
+Split open (vertical)                | :vs …
+Reopen last opened file              | «C-o»«C-o»
+Open with external app               | gx
+File explorer (Netrw)                | :Ex
+Close file                           | :bd
+Close all                            | :%bd
+Save                                 | :w
+Save (only if modified)              | :up
+Save as…                             | :sav …
+Save all                             | :wa
+Save read-only file                  | :w!
+Save session                         | :mks
+Restore session                      | :so Session.vim
+Restore session                      | :so Session
+Reload file from disk                | :e
+Revert to last saved                 | :e!
+Convert buffer to HTML               | :TOhtml
+Print document                       | :hardcopy
+Quit (window)                        | :q
+Save and quit (window)               | :x, ZZ
+Quit without saving                  | :q!, ZQ
+Save all and exit Vim                | :xa
+Exit Vim without saving              | :qa!
+
+## netrw-vim
+Open file/directory                  | «CR»
+Open in horizontal split             | o
+Open in vertical split               | v
+Open in a new tab                    | t
+Open with external app               | x
+New file here                        | %
+New directory here                   | d
+Mark file                            | mf
+Mark using shell glob                | mr
+Unmark all                           | mu
+Edit marked files                    | me
+Rename file(s)                       | R
+Delete file(s)                       | D
+Refresh file list                    | «C-l»
+File info                            | qf
+Toggle hidden files                  | a
+Switch file list format              | i
+Exit file explorer                   | :Rex
+
+## edit-vim
+Back to normal mode                  | «Esc»
+Cancel command/operation             | «C-c»
+Insert at cursor pos.                | i
+Append after the cursor              | a
+Insert at start of line              | I
+Append at end of line                | A
+Open new line below                  | o
+Open new line above                  | O
+Replace character                    | r‹c›
+Replace mode/overwrite               | R
+Change                               | c
+Replace line                         | cc
+Repeat last command                  | .
+Undo                                 | u
+Redo                                 | «C-r»
+Next text state                      | g+
+Prev text state                      | g-
+Cut                                  | d
+Cut into register ‹r›                | "‹r›d
+Cut into OS clipboard                | "*d
+Cut ‹n› lines                        | ‹n›dd
+Cut until the EOL                    | D
+Cut ‹n› characters »                 | ‹n›x
+Cut ‹n› characters «                 | ‹n›X
+Cut all                              | :%d
+Copy                                 | y
+Copy into register ‹r›               | "‹r›y
+Copy into OS clipboard               | "*y
+Copy ‹n› lines                       | ‹n›yy
+Copy until the EOL                   | y$
+Copy all                             | :%y
+Paste after cursor                   | p
+Paste before cursor                  | P
+Paste from register ‹r›              | "‹r›p
+Paste from register ‹r›              | «C-r»‹r›
+Paste from OS clipboard              | "*p
+Paste after and align                | ]p
+Paste before and align               | ]P
+Visual mode (select)                 | v
+Linewise visual mode                 | V
+Block visual mode                    | «C-v»
+Insert in selected lines             | «C-v»‹Move›I
+Append to selected lines             | «C-v»‹Move›A
+Change in selected lines             | «C-v»‹Move›c
+Delete in selected lines             | «C-v»‹Move›x
+Reselect visual                      | gv
+Select all                           | ggVG
+Delete previous word                 | «C-w»
+Erase line before cursor             | «C-u»
+Start recording macro                | q‹r›
+Stop recording macro                 | q
+Run recorded macro                   | @‹r›
+Repeat last macro                    | @@
+Repeat last Ex command               | @:
+Run cmd in all buffers               | :bufdo ‹Cmd›
+
+## text-objects-vim
+Around word                          | aw
+Inside word                          | iw
+Around WORD                          | aW
+Inside WORD                          | iW
+Around sentence                      | as
+Inside sentence                      | is
+Around paragraph                     | ap
+Inside paragraph                     | ip
+Around parentheses                   | a( , ab
+Inside parentheses                   | i( , ib
+Around brackets                      | a[
+Inside brackets                      | i[
+Around braces                        | a{ , zB
+Inside braces                        | i{ , iB
+Around (XML) tags                    | at
+Inside (XML) tags                    | it
+Around < and >                       | a<
+Inside < and >                       | i<
+Around double quotes                 | a"
+Inside double quotes                 | i"
+Around simple quotes                 | a'
+Inside simple quotes                 | i'
+Around backticks                     | a`
+Inside backticks                     | i`
+
+## text-manipulation-vim
+Change to uppercase                  | gU
+Change to lowercase                  | gu
+Uppercase line                       | gUU
+Lowercase line                       | guu
+Change to uppercase                  | U
+Change to lowercase                  | u
+Toggle case                          | ~
+Toggle case                          | ~
+Indent   (. to repeat)               | >
+Unindent (. to repeat)               | <
+Reindent                             | =
+Indent line (. repeats)              | >>
+Unindent    (. repeats)              | <<
+Reindent line                        | ==
+Indent line (insert mode)            | «C-t»
+Unindent line (insert mode)          | «C-d»
+Hard-wrap (cursor moves)             | gq
+Hard-wrap (cursor stays)             | gw
+Format current line                  | gww
+Join with next line                  | J
+Join next line preserve spaces       | gJ
+Use hard tabs                        | :set noet
+Use soft tabs (spaces)               | :set et
+Detab (needs 'et' on)                | :retab
+Entab (needs 'et' off)               | :retab!
+Toggle spell checking                | :setl spell!
+To next misspelled word              | ]s
+To prev misspelled word              | [s
+Suggest corrections                  | z=
+Suggest corrections                  | «C-x»s
+Set text width                       | :set tw=‹n›
+Sort selected lines                  | :sort
+Sort+remove duplicates               | :sort u
+Run macro for each line              | :norm @‹r›
+Run Cmd on lines =~ ‹P›              | :g/‹P›/‹Cmd›
+Autocomplete (search »)              | «C-n»
+Autocomplete (search «)              | «C-p»
+Omnicomplete                         | «C-x»«C-o»
+Line autocomplete                    | «C-x»«C-l»
+Insert digraph                       | «C-k»‹c›‹c›
+Insert calculated expr.              | «C-r»=
+Increment number                     | ‹n›«C-a»
+Decrement number                     | ‹n›«C-x»
+
+## navigation-vim
+Scroll down a page                   | «C-f»
+Scroll up a page                     | «C-b»
+Scroll down half a page              | «C-d»
+Scroll up half a page                | «C-u»
+Scroll down a bit                    | «C-e»
+Scroll up a bit                      | «C-y»
+Scroll right                         | ‹n›zl
+Scroll left                          | ‹n›zh
+Scroll » half a screen               | zL
+Scroll « half a screen               | zH
+Scroll line to the top               | zt
+Scroll to the bottom                 | zb
+Scroll to the center                 | zz
+Toggle soft-wrapping                 | :setl wrap!
+Page guide at column n               | :setl cc=‹n›
+No page guide                        | :setl cc=
+Toggle line numbers                  | :setl nu!
+Toggle rel. line numbers             | :setl rnu!
+Toggle invisibles                    | :setl list!
+Fold                                 | zc
+Unfold                               | zv
+Toggle fold                          | za
+Fold all                             | zM
+Unfold all                           | zR
+Show files                           | :ls
+Edit… (autocomplete)                 | :b «Tab»
+Edit buffer ‹n›                      | :b‹n›
+Edit last edited file                | «C-^»
+Edit next buffer                     | :bn
+Edit prev buffer                     | :bp
+Edir prev in arg list                | :prev
+Edir next in arg list                | :next
+Get file info                        | «C-g»
+Character info                       | ga
+Go to file under cursor              | gf
+Line/word/char count                 | g«C-g»
+Toggle cursorline                    | :setl cul!
+Toggle search highlight              | :setl hls!
+
+## search-vim
+Toggle ignore case                   | :set ic!
+Search forward                       | /‹P›
+Search backward                      | ?‹P›
+Jump » to match                      | n
+Jump « to match                      | N
+Select up to next match              | gn
+Select up to prev match              | gN
+Search » for this word               | *
+Search « for this word               | #
+Find and replace                     | :s/‹P›/‹P›/g
+Find and replace confirm             | :s/‹P›/‹P›/gc
+Find and replace all                 | :%s/‹P›/‹P›/g
+Prev in quickfix list                | :cp
+Next in quickfix list                | :cn
+Prev in location list                | :lp
+Next in location list                | :lne
+Next command (command mode)          | «C-n»
+Prev command (command mode)          | «C-p»
+Browse command history               | q:
+Browse search patterns               | q/
+Use this file for diff               | :diffthis
+Exit diff mode                       | :diffoff!
+Re-scan files for diffs              | :diffupdate
+Next difference                      | ]c
+Prev difference                      | [c
+Diff put                             | dp
+Diff obtain                          | do
+Get differences                      | :diffget
+Put differences                      | :diffput
+
+## movement-vim
+Left                                 | h
+Right                                | l
+Up                                   | k
+Down                                 | j
+Up (honor soft-wrapping)             | gk
+Down (honor soft-wrapping)           | gj
+Start of next word                   | w
+Start of prev word                   | b
+End of next word                     | e
+End of prev word                     | ge
+Start of next WORD                   | W
+Start of prev WORD                   | B
+End of next WORD                     | E
+End of prev WORD                     | gE
+Start of line                        | 0
+End of line                          | $
+This line 1st non-blank              | ^
+Next line 1st non-blank              | +
+Prev line 1st non-blank              | -
+First line                           | gg
+Last line                            | G
+Next ‹c› in this line                | f‹c›
+Just before next ‹c›                 | t‹c›
+Prev ‹c› in this line                | F‹c›
+Just after prev ‹c›                  | T‹c›
+Repeat f/t/F/T »                     | ;
+Repeat f/t/F/T «                     | ,
+Prev pos in change list              | g;
+Next pos in change list              | g,
+Go to line ‹n›                       | :‹n›
+Go to column ‹n›                     | ‹n›|
+Jump to line ‹n›                     | ‹n›G
+Jump to next blank line              | }
+Jump to prev blank line              | {
+Jump to begin of block               | [{
+Jump to end of block                 | ]}
+Jump to end of sentence              | )
+Jump to beg. of sentence             | (
+Jump to end of section               | ]]
+Jump to beg. of section              | [[
+Jump to top of window                | H
+Jump to middle                       | M
+Jump to bottom                       | L
+Jump to matching delim               | %
+Jump to specified tag                | :tag …
+Jump to older tag                    | «C-t»
+Jump to tag definition               | «C-]»
+Jump to tag definition, show choices | g]
+Jump or show choices                 | g«C-]»
+To next matching tag                 | :tn
+To prev matching tag                 | :tp
+Set mark                             | m‹c›
+Jump to mark                         | `‹c›
+View all marks                       | :marks
+Remove marks                         | :delmarks …
+Jump to definition                   | gd
+To prev jump position                | «C-o»
+To next jump position                | «C-i»
+To start of next fold                | zj
+To end of previous fold              | zk
+
+## window-vim
+New horizontal split                 | :new , «C-w»«C-n»
+New vertical split                   | :vnew
+Close window                         | «C-w»c
+Close inactive windows               | «C-w»«C-o»
+Split horizontally                   | «C-w»s
+Split vertically                     | «C-w»«C-v»
+Exchange windows                     | «C-w»«C-x»
+Move to the very top                 | «C-w»K
+Move to the very bottom              | «C-w»J
+Move to the far right                | «C-w»L
+Move to the far left                 | «C-w»H
+One window per file                  | :ball
+Cycle through windows                | «C-w»«C-w»
+Back to previous window              | «C-w»«C-p»
+Edit window to the left              | «C-w»«C-h»
+Edit window below                    | «C-w»«C-j»
+Edit window above                    | «C-w»«C-k»
+Edit window to the right             | «C-w»«C-l»
+Edit top window                      | «C-w»«C-t»
+Edit bottom window                   | «C-w»«C-b»
+All windows same size                | «C-w»=
+Maximize height                      | «C-w»_
+Maximize width                       | «C-w»|
+Decrease height                      | «C-w»-
+Increase height                      | «C-w»+
+Decrease width                       | «C-w»<
+Increase width                       | «C-w»>
+Exec. Cmd in all windows             | :windo ‹Cmd›
+
+## tabs-vim
+New untitled tab                     | :tabnew
+New/open in tab                      | :tabe …
+Next tab                             | gt
+Previous tab                         | gT
+Go to tab n                          | ‹n›gt
+Close tab                            | :tabc
+Close all other tabs                 | :tabo
+List tabs                            | :tabs
+Move window to new tab               | «C-w»T
+Open one tab per buffer              | :tab ball
+Execute Cmd in all tabs              | :tabdo ‹Cmd›
+
+## help-vim
+Help about …                         | :h …
+Help search                          | :helpgrep …
+Help on highlight test               | :h hitest.vim
+View mappings                        | :map …
+View Insert mode mappings            | :imap …
+View registers                       | :reg
+List of sourced files                | :scr
+List of digraphs                     | :digraphs
+List all syntax items                | :syn
+
+## misc-vim
+Show current directory               | :pwd
+Change directory                     | :cd …
+Show the value of ‹Var›              | :echo ‹Var›
+Show value of option                 | :set ‹Var›?

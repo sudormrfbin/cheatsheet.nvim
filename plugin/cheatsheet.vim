@@ -7,6 +7,9 @@ if mapcheck("<leader>?", "n") == ""
   nnoremap <unique> <leader>? :<C-U>Cheatsheet<CR>
 endif
 
+" Include doc/cheatsheet-default.txt
+let g:cheatsheet_use_default = v:true
+
 highlight default link cheatComment Comment
 highlight default link cheatMetadataComment Comment
 highlight default link cheatMetadataTag Include

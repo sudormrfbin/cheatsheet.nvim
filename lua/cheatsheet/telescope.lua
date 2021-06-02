@@ -15,7 +15,8 @@ local M = {}
 -- Highlight groups:
 --     cheatMetadataSection, cheatDescription, cheatCode
 -- Mappings:
---     CTRL-E, i_CTRL-E - edit user cheatsheet in new buffer
+--     <C-E> - Edit user cheatsheet in new buffer
+--     <C-D> - Toggle including the default cheatsheat
 M.pick_cheat = function(opts)
     opts = opts or {}
 
@@ -89,11 +90,13 @@ M.pick_cheat = function(opts)
                         cheatsheet.edit_user_cheatsheet()
                     end
                 )
-                map(
-                    'n', '<C-E>', function()
-                        actions.close(prompt_bufnr)
-                        cheatsheet.edit_user_cheatsheet()
-                    end
+                map('i', '<C-D>', function()
+                    -- _close with keepinsert=true to support opening another
+                    -- telescope window (here same window) from current one
+                    actions._close(prompt_bufnr, true)
+                    cheatsheet.toggle_use_default_cheatsheet()
+                    M.pick_cheat()
+                end
                 )
                 return true
             end,

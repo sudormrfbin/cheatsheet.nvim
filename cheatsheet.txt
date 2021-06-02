@@ -4,3 +4,4 @@ Open in floating window             | :CheatsheetFloat
 Open in Telescope                   | :CheatsheetTelescope
 Open user cheatsheet                | :CheatsheetEdit
 Open user cheatsheet from Telescope | <C-E>
+Toggle default cheatsheet Telescope | <C-D>

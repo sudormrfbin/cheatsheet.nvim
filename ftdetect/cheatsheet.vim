@@ -1,1 +1,1 @@
-au BufNewFile,BufRead cheatsheet.txt set filetype=cheatsheet
+au BufNewFile,BufRead cheatsheet.txt,cheatsheet-default.txt set filetype=cheatsheet
