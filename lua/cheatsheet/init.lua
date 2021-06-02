@@ -1,4 +1,5 @@
-local path = require('plenary.path')
+-- plenary is only used for telescope specific code
+local has_path, path = pcall(require, "plenary.path")
 
 local M = {}
 
@@ -33,6 +34,8 @@ end
 -- Ignores comments and newlines (except for metadata comments).
 -- @return array of {description, cheatcode, section, {tags}} for each cheat
 M.get_cheats = function()
+    if not has_path then error("plenary.nvim not installed") end
+
     local section_pat = '^##%s*(%S*)'
     local tags_pat = '^##.*@%S*'
     local cheatline_pat = '^([^#]-)%s*|%s*(.-)%s*$'
@@ -79,10 +82,7 @@ end
 M.show_cheats_float = function()
     -- handle to an unlisted scratch buffer
     local bufhandle = vim.api.nvim_create_buf(false, true)
-    if bufhandle == 0 then
-        vim.api.nvim_err_writeln("cheatsheet: Could not open temp buffer")
-        return
-    end
+    if bufhandle == 0 then error("cheatsheet: Could not open temp buffer") end
 
     -- taken from plenary.nvim for centering the floating window
     local width = math.floor(vim.o.columns * 0.7)
@@ -102,8 +102,7 @@ M.show_cheats_float = function()
 
     local winhandle = vim.api.nvim_open_win(bufhandle, true, float_opts)
     if winhandle == 0 then
-        vim.api.nvim_err_writeln("cheatsheet: Could not open floating window")
-        return
+        error("cheatsheet: Could not open floating window")
     end
 
     for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
