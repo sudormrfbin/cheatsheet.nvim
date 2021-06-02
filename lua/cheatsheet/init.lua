@@ -21,6 +21,16 @@ local function dedupe_array(array)
     return result
 end
 
+-- Get the user's cheatsheet.txt located in config directory (~/.config/nvim)
+M.get_user_cheatsheet = function()
+    return vim.fn.stdpath("config") .. "/cheatsheet.txt"
+end
+
+-- Edit the user's cheatsheet in a new buffer
+M.edit_user_cheatsheet = function()
+    vim.api.nvim_command(":edit " .. M.get_user_cheatsheet())
+end
+
 -- Get `cheatsheet.txt` files from any directory in runtimepath
 -- @return array of filepaths
 M.get_cheatsheet_files = function()
@@ -112,7 +122,9 @@ M.show_cheats_float = function()
     end
 
     vim.api.nvim_buf_set_virtual_text(
-        bufhandle, 0, 0, { { "Press q to close", "PreProc" } }, {}
+        bufhandle, 0, 0,
+            { { "Press [q] to close, [e] to edit your cheatsheet", "PreProc" } },
+            {}
     )
 
     vim.bo.filetype = 'cheatsheet'
@@ -125,6 +137,10 @@ M.show_cheats_float = function()
 
     vim.api.nvim_buf_set_keymap(
         0, 'n', 'q', ':close<CR>', { noremap = true, silent = true }
+    )
+    vim.api.nvim_buf_set_keymap(
+        0, 'n', 'e', ':close<CR>:CheatsheetEdit<CR>',
+            { noremap = true, silent = true }
     )
 end
 

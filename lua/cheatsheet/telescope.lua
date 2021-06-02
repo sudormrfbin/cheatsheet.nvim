@@ -11,6 +11,11 @@ local cheatsheet = require('cheatsheet')
 
 local M = {}
 
+-- Filter through cheats using Telescope
+-- Highlight groups:
+--     cheatMetadataSection, cheatDescription, cheatCode
+-- Mappings:
+--     CTRL-E, i_CTRL-E - edit user cheatsheet in new buffer
 M.pick_cheat = function(opts)
     opts = opts or {}
 
@@ -70,12 +75,24 @@ M.pick_cheat = function(opts)
                     }
                 end,
             },
-            attach_mappings = function(prompt_bufnr)
+            attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(
                     function()
                         -- local selection = action_state.get_selected_entry()
                         -- close telescope on Enter
                         actions.close(prompt_bufnr)
+                    end
+                )
+                map(
+                    'i', '<C-E>', function()
+                        actions.close(prompt_bufnr)
+                        cheatsheet.edit_user_cheatsheet()
+                    end
+                )
+                map(
+                    'n', '<C-E>', function()
+                        actions.close(prompt_bufnr)
+                        cheatsheet.edit_user_cheatsheet()
                     end
                 )
                 return true
