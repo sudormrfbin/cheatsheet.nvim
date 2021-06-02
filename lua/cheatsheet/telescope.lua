@@ -4,10 +4,11 @@ local pickers = require('telescope.pickers')
 
 local conf = require('telescope.config').values
 local config = require('telescope.config')
-local utils = require('telescope.utils')
+local telescope_utils = require('telescope.utils')
 local entry_display = require('telescope.pickers.entry_display')
 
 local cheatsheet = require('cheatsheet')
+local utils = require('cheatsheet.utils')
 
 local M = {}
 
@@ -32,7 +33,7 @@ M.pick_cheat = function(opts)
                     -- a small width for the respective cheatcode column is used.
                     -- But the cheatcode is what we *don't* know and the description is
                     -- what we already know. So show description first for better UX.
-                    local width = utils.get_default(
+                    local width = telescope_utils.get_default(
                         opts.results_width, config.values.results_width
                     )
                     local cols = vim.o.columns
@@ -87,16 +88,17 @@ M.pick_cheat = function(opts)
                 map(
                     'i', '<C-E>', function()
                         actions.close(prompt_bufnr)
-                        cheatsheet.edit_user_cheatsheet()
+                        utils.edit_user_cheatsheet()
                     end
                 )
-                map('i', '<C-D>', function()
-                    -- _close with keepinsert=true to support opening another
-                    -- telescope window (here same window) from current one
-                    actions._close(prompt_bufnr, true)
-                    cheatsheet.toggle_use_default_cheatsheet()
-                    M.pick_cheat()
-                end
+                map(
+                    'i', '<C-D>', function()
+                        -- _close with keepinsert=true to support opening another
+                        -- telescope window (here same window) from current one
+                        actions._close(prompt_bufnr, true)
+                        utils.toggle_use_default_cheatsheet()
+                        M.pick_cheat()
+                    end
                 )
                 return true
             end,
