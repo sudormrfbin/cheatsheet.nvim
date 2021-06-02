@@ -89,7 +89,8 @@ M.get_cheats = function()
     return cheats
 end
 
-M.show_cheats_float = function()
+-- Use a floating window to show cheatsheets in a syntax highlighted buffer
+M.show_cheatsheet_float = function()
     -- handle to an unlisted scratch buffer
     local bufhandle = vim.api.nvim_create_buf(false, true)
     if bufhandle == 0 then error("cheatsheet: Could not open temp buffer") end
@@ -142,6 +143,21 @@ M.show_cheats_float = function()
         0, 'n', 'e', ':close<CR>:CheatsheetEdit<CR>',
             { noremap = true, silent = true }
     )
+end
+
+-- Use Telescope to show and filter cheatsheets
+M.show_cheatsheet_telescope = function(opts)
+    require('cheatsheet.telescope').pick_cheat(opts)
+end
+
+-- Use Telescope for displaying cheatsheets and if not installed, use the
+-- builtin floating window method.
+M.show_cheatsheet = function(opts)
+    if pcall(require, 'telescope') then
+        M.show_cheatsheet_telescope(opts)
+    else
+        M.show_cheatsheet_float()
+    end
 end
 
 return M
