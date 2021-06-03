@@ -96,7 +96,15 @@ See this project's [cheatsheet](./cheatsheet.txt) and the
 ## For Plugin Authors
 
 You can put a `cheatsheet.txt` file in the root of your repo (like in this repo)
-and it will be picked up automatically and displayed on `:Cheatsheet`.
+and it will be picked up automatically and displayed on `:Cheatsheet`. Even without
+this plugin it is very readable and can serve as a normal quickstart file.
+
+## Additional Cheatsheets
+
+Cheats for other plugins are collected in [contrib](./contrib/cheatsheet.txt). Ideally
+plugin authors would supply their own `cheatsheet.txt`, but since that
+is not widespread, they are collected here. You can copy them at your
+leisure.
 
 ## Acknowledgements
 

@@ -1,0 +1,56 @@
+## telescope @fuzzy @fzf
+Close                                    | <C-C>
+Toggle selection                         | <Tab>
+Open file in tab                         | <C-T>
+Open file in split                       | <C-X>
+Open file in vsplit                      | <C-V>
+Scroll up in preview window              | <C-U>
+Scroll down in preview window            | <C-D>
+Send to quickfix list                    | <C-Q>
+Send selected items to quickfix list     | <M-Q>
+
+## gitsigns @git
+Stage hunk                               | <leader>hs
+Undo stage hunk                          | <leader>hu
+Stage hunk                               | <leader>hs
+Reset hunk                               | <leader>hr
+Preview hunk                             | <leader>hp
+Reset buffer                             | <leader>hR
+Blame current line                       | <leader>hb
+Next hunk                                | ]c
+Previous hunk                            | ]c
+Hunk text object                         | ih
+
+## sandwich @surround
+Add                                      | sa<char>
+Delete                                   | sd<char>
+Delete (detect surround char)            | sdb
+Replace                                  | sr<before><after>
+Replace (detect surround char)           | srb<after>
+Text object (detect surround char)       | ib, ab
+Surround with function                   | sa<motion/txtobj>f
+Delete surrounding function              | sdf
+Delete outer nested function             | sdF
+Surround with word (Tab to autocomplete) | sa<motion/txtobj>i
+Delete word (accepts regex)              | sdi
+Add HTML tag                             | sa<motion/txtobj>t
+Delete HTML tag                          | sdt
+Replace HTML tag only                    | srtt
+Replace HTML tag and attributes          | srTT
+
+## easy-align @justify
+Align markdown table                     | ga<motion>*|
+Align python/ruby comments               | ga<motion>#
+Align latex table                        | ga<motion>&
+Align multi line method arguments        | ga<motion>,
+Align multi line method chaining         | ga<motion>.
+Align for JSON/YAML                      | ga<motion>:
+Align around <n>th <delim>               | ga<motion><n><delim>
+Align around all <delim>                 | ga<motion>*<delim>
+Align around last <delim>                | ga<motion>-<delim>
+Right align around first <delim>         | <CR> in prompt
+Center align around first <delim>        | <CR><CR> in prompt
+Align around regex                       | <C-X> in prompt
+Switch to live preview mode              | <C-P> in prompt
+Align only lines that match pattern      | <C-F> in prompt; g/pat/ or v/pat/
+
