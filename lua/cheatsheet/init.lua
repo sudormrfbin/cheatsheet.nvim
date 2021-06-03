@@ -20,7 +20,7 @@ end
 -- Ignores comments and newlines (except for metadata comments).
 -- @return array of {description, cheatcode, section, {tags}} for each cheat
 M.get_cheats = function()
-    if not has_path then error("plenary.nvim not installed") end
+    assert(has_path, "plenary.nvim not installed")
 
     local section_pat = '^##%s*(%S*)'
     local tags_pat = '^##.*@%S*'
@@ -69,7 +69,7 @@ end
 M.show_cheatsheet_float = function()
     -- handle to an unlisted scratch buffer
     local bufhandle = vim.api.nvim_create_buf(false, true)
-    if bufhandle == 0 then error("cheatsheet: Could not open temp buffer") end
+    assert(bufhandle, "Could not open temp buffer")
 
     -- taken from plenary.nvim for centering the floating window
     local width = math.floor(vim.o.columns * 0.7)
@@ -88,9 +88,7 @@ M.show_cheatsheet_float = function()
     }
 
     local winhandle = vim.api.nvim_open_win(bufhandle, true, float_opts)
-    if winhandle == 0 then
-        error("cheatsheet: Could not open floating window")
-    end
+    assert(winhandle, "Could not open floating window")
 
     for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
         vim.api.nvim_command("$read " .. cheatfile)
