@@ -52,7 +52,7 @@ Exit file explorer                   | :Rex
 Back to normal mode                  | «Esc»
 Cancel command/operation             | «C-c»
 Insert at cursor pos.                | i
-Append after the cursor              | a
+Append after cursor                  | a
 Insert at start of line              | I
 Append at end of line                | A
 Open new line below                  | o
@@ -70,7 +70,7 @@ Cut                                  | d
 Cut into register ‹r›                | "‹r›d
 Cut into OS clipboard                | "*d
 Cut ‹n› lines                        | ‹n›dd
-Cut until the EOL                    | D
+Cut until EOL                        | D
 Cut ‹n› characters »                 | ‹n›x
 Cut ‹n› characters «                 | ‹n›X
 Cut all                              | :%d
@@ -78,7 +78,7 @@ Copy                                 | y
 Copy into register ‹r›               | "‹r›y
 Copy into OS clipboard               | "*y
 Copy ‹n› lines                       | ‹n›yy
-Copy until the EOL                   | y$
+Copy until EOL                       | y$
 Copy all                             | :%y
 Paste after cursor                   | p
 Paste before cursor                  | P
@@ -183,13 +183,13 @@ Scroll down half a page              | «C-d»
 Scroll up half a page                | «C-u»
 Scroll down a bit                    | «C-e»
 Scroll up a bit                      | «C-y»
-Scroll right                         | ‹n›zl
-Scroll left                          | ‹n›zh
-Scroll » half a screen               | zL
-Scroll « half a screen               | zH
-Scroll line to the top               | zt
-Scroll to the bottom                 | zb
-Scroll to the center                 | zz
+Scroll horizontally right            | ‹n›zl
+Scroll horizontally left             | ‹n›zh
+Scroll horizontally half a screen    | zL
+Scroll horizontally half a screen    | zH
+Scroll line to top                   | zt
+Scroll to bottom                     | zb
+Scroll to center                     | zz
 Toggle soft-wrapping                 | :setl wrap!
 Page guide at column n               | :setl cc=‹n›
 No page guide                        | :setl cc=
@@ -366,5 +366,5 @@ List all syntax items                | :syn
 ## misc-vim
 Show current directory               | :pwd
 Change directory                     | :cd …
-Show the value of ‹Var›              | :echo ‹Var›
+Show value of ‹Var›                  | :echo ‹Var›
 Show value of option                 | :set ‹Var›?
