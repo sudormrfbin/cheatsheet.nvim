@@ -82,29 +82,36 @@ M.pick_cheat = function(opts)
                 actions.select_default:replace(
                     function()
                         local selection = actions_state.get_selected_entry()
-						local cheat = selection.value.cheatcode
-						local description = selection.value.description
+                        local cheat = selection.value.cheatcode
+                        local description = selection.value.description
 
                         actions.close(prompt_bufnr)
 
-						if string.len(cheat) > 1 then
-							-- check for valid command
+                        if string.len(cheat) > 1 then
+                            -- check for valid command
 
-							cheat = cheat:match("^%s*(.-)%s*$") -- strip spaces
-							if cheat:match("^:%w+$") ~= nil then
-								-- execute command, previous match should already
-								-- sanitize input
-								vim.cmd(cheat)
-							else
-								-- otherwise show command
-								print("Cheatsheet: Press",
-									cheat,
-									"to",
-									description:lower())
-							end
-						else
-							print("Cheatsheet: No command could be executed")
-						end
+                            cheat = cheat:match("^%s*(.-)%s*$") -- strip spaces
+                            local regex = "^:[%w ]+"
+                            local cheat_sanitized = cheat:match(regex)
+                            if cheat_sanitized ~= nil then
+                                -- execute command, previous match should already
+                                -- sanitize input and next should stop at next
+                                -- non normal character like [<>,]
+                                -- Regex might need an update in the future
+                                vim.api.nvim_feedkeys(
+                                    vim.api.nvim_replace_termcodes(
+                                        cheat_sanitized, true, false, true),
+                                    "t", true)
+                            else
+                                -- otherwise show command
+                                print("Cheatsheet: Press",
+                                    cheat,
+                                    "to",
+                                    description:lower())
+                            end
+                        else
+                            print("Cheatsheet: No command could be executed")
+                        end
                     end
                 )
                 map(
