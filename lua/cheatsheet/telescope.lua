@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+local actions_state = require('telescope.actions.state')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 
@@ -80,9 +81,30 @@ M.pick_cheat = function(opts)
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(
                     function()
-                        -- local selection = action_state.get_selected_entry()
-                        -- close telescope on Enter
+                        local selection = actions_state.get_selected_entry()
+						local cheat = selection.value.cheatcode
+						local description = selection.value.description
+
                         actions.close(prompt_bufnr)
+
+						if string.len(cheat) > 1 then
+							-- check for valid command
+
+							cheat = cheat:match("^%s*(.-)%s*$") -- strip spaces
+							if cheat:match("^:%w+$") ~= nil then
+								-- execute command, previous match should already
+								-- sanitize input
+								vim.cmd(cheat)
+							else
+								-- otherwise show command
+								print("Cheatsheet: Press",
+									cheat,
+									"to",
+									description:lower())
+							end
+						else
+							print("Cheatsheet: No command could be executed")
+						end
                     end
                 )
                 map(
