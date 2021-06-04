@@ -9,10 +9,18 @@ installed), because hoomans suck at remembering stuff:
 
 <sup>Font: [mononoki](https://madmalik.github.io/mononoki/), Colorscheme: [onedark](https://github.com/joshdick/onedark.vim), [Dotfiles](https://github.com/sudormrfbin/dotfiles2)</sup>
 
+## Quickstart
+
+1. Forget how to do `X`
+2. Hit `<leader>?` to invoke cheatsheet telescope
+3. Type in `X` and find forgotten mapping/command
+4. No more ???
+5. Profit !!
+
 ## Installation
 
 Installing Telescope is not required, but *highly* recommended for
-using cheatsheets this plugin effectively. `popup.nvim` and `plenary.nvim`
+using this plugin effectively. `popup.nvim` and `plenary.nvim`
 are used by Telescope.
 
 Using [vim-plug](https://github.com/junegunn/vim-plug)
@@ -59,10 +67,11 @@ Your cheatsheet file is a simple text file with the name `cheatsheet.txt` found 
 `~/.config/nvim/` (`~/AppData/Local/nvim/` if you're on Windows) alongside your
 `init.vim`. Use the `:CheatsheetEdit` command to open it in a buffer to edit.
 
-A [builtin cheatsheet](./doc/cheatsheet-default.txt) lists most of the useful inbuilt vim mappings and commands,
-useful for people still finding their way around the editor (and for others
-wanting to scratch the occasional I've-been-using-vim-for-years-but-forgot-how-to-scroll-horizontally
-itch). Disable it with `let g:cheatsheet_use_default = v:false`.
+A [builtin cheatsheet](./doc/cheatsheet-default.txt) lists most of the useful
+inbuilt vim mappings and commands, useful for people still finding their way
+around the editor (and for others wanting to scratch the occasional
+I've-been-using-vim-for-years-but-forgot-how-to-scroll-horizontally itch).
+Disable it with `let g:cheatsheet_use_default = v:false`.
 
 | Telescope mappings | Description                                 |
 | ---                | ---                                         |
@@ -97,16 +106,19 @@ See this project's [cheatsheet](./cheatsheet.txt) and the
 
 ## For Plugin Authors
 
-You can put a `cheatsheet.txt` file in the root of your repo (like in this repo)
-and it will be picked up automatically and displayed on `:Cheatsheet`. Even without
-this plugin it is very readable and can serve as a normal quickstart file.
+You can put a `cheatsheet.txt` file in the root of your repo
+([like](./cheatsheet.txt) in this repo) and it will be picked up automatically
+and displayed on `:Cheatsheet`.  You don't have to add the file to your repo
+*solely* to support searching it using `cheatsheet.nvim` -- the format is
+simple enough to be opened and read normally and can serve as a great
+quickstart for users.
 
 ## Additional Cheatsheets
 
 Cheats for other plugins are collected in [contrib](./contrib/cheatsheet.txt). Ideally
-plugin authors would supply their own `cheatsheet.txt`, but since that
-is not widespread, they are collected here. You can copy them at your
-leisure.
+plugin authors would supply their own `cheatsheet.txt`, but since
+that is not possible for every plugin, they are collected here.
+You can copy them at your leisure.
 
 ## Acknowledgements
 
