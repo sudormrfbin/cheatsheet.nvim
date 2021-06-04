@@ -7,6 +7,8 @@ installed), because hoomans suck at remembering stuff:
 
 ![cheatsheet.nvim with Telescope](https://user-images.githubusercontent.com/23398472/120632733-e6191f80-c486-11eb-90d6-e26bacf83c20.png)
 
+<sup>Font: [mononoki](https://madmalik.github.io/mononoki/), Colorscheme: [onedark](https://github.com/joshdick/onedark.vim), [Dotfiles](https://github.com/sudormrfbin/dotfiles2)</sup>
+
 ## Installation
 
 Installing Telescope is not required, but *highly* recommended for
