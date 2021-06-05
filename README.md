@@ -73,11 +73,11 @@ around the editor (and for others wanting to scratch the occasional
 I've-been-using-vim-for-years-but-forgot-how-to-scroll-horizontally itch).
 Disable it with `let g:cheatsheet_use_default = v:false`.
 
-| Telescope mappings | Description                                                      |
-| ---                | ---                                                              |
-| `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit`                      |
-| `<C-D>`            | Toggle `g:cheatsheet_use_default`                                |
-| `Enter`            | Execute command if possible, otherwise print for easy reference. |
+| Telescope mappings | Description                                                                        |
+| ---                | ---                                                                                |
+| `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit`                                        |
+| `<C-D>`            | Toggle `g:cheatsheet_use_default`                                                  |
+| `Enter`            | Fill in the command on de commandline. If not a command, print for easy reference. |
 
 Since `cheatsheet.nvim` provides it's own commands,  it is not required to
 "load" `cheatsheet.nvim` with Telescope which is usually required for plugins
