@@ -102,9 +102,14 @@ M.pick_cheat = function(opts)
                         if command ~= nil then
                             vim.api.nvim_feedkeys(command, "n", true)
                         else
-                            print(
-                                "Cheatsheet [" .. section .. "]: Press", cheat,
-                                    "to", description:lower()
+                            vim.api.nvim_echo(
+                                {   -- text, highlight group 
+                                    { "Cheatsheet [", "" },
+                                    { section, "cheatMetadataSection" },
+                                    { "]: Press ", "" }, { cheat, "cheatCode" },
+                                    { " to ", "" },
+                                    { description:lower(), "cheatDescription" },
+                                }, false, {}
                             )
                         end
                     end
