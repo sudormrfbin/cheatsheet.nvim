@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+local actions_state = require('telescope.actions.state')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 
@@ -80,9 +81,36 @@ M.pick_cheat = function(opts)
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(
                     function()
-                        -- local selection = action_state.get_selected_entry()
-                        -- close telescope on Enter
+                        local selection = actions_state.get_selected_entry()
+                        local section = selection.value.section
+                        local description = selection.value.description
+                        local cheat = selection.value.cheatcode
+
                         actions.close(prompt_bufnr)
+
+                        if string.len(cheat) == 1 then
+                            print("Cheatsheet: No command could be executed")
+                            return
+                        end
+
+                        -- check for valid command
+                        local cheat_sanitized = cheat:match("^:[%w ]+")
+                        if cheat_sanitized ~= nil then
+                            -- execute command, previous match should already
+                            -- sanitize input and next should stop at next
+                            -- non normal character like [<>,]
+                            -- Regex might need an update in the future
+                            vim.api.nvim_feedkeys(
+                                vim.api.nvim_replace_termcodes(
+                                    cheat_sanitized, true, false, true),
+                                "n", true)
+                        else
+                            -- otherwise show command
+                            print("Cheatsheet ["..section.."]: Press",
+                                cheat,
+                                "to",
+                                description:lower())
+                        end
                     end
                 )
                 map(
