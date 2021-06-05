@@ -93,23 +93,19 @@ M.pick_cheat = function(opts)
                             return
                         end
 
-                        -- check for valid command
-                        local cheat_sanitized = cheat:match("^:[%w ]+")
-                        if cheat_sanitized ~= nil then
-                            -- execute command, previous match should already
-                            -- sanitize input and next should stop at next
-                            -- non normal character like [<>,]
-                            -- Regex might need an update in the future
-                            vim.api.nvim_feedkeys(
-                                vim.api.nvim_replace_termcodes(
-                                    cheat_sanitized, true, false, true),
-                                "n", true)
+                        -- Extract command from cheat, eg:
+                        -- ":%bdelete" -> No change
+                        -- ":set hls!" -> No change
+                        -- ":edit [file]" -> ":edit "
+                        -- ":set shiftwidth={n}" -> ":set shiftwidth="
+                        local command = cheat:match("^:[^%[%{]+")
+                        if command ~= nil then
+                            vim.api.nvim_feedkeys(command, "n", true)
                         else
-                            -- otherwise show command
-                            print("Cheatsheet ["..section.."]: Press",
-                                cheat,
-                                "to",
-                                description:lower())
+                            print(
+                                "Cheatsheet [" .. section .. "]: Press", cheat,
+                                    "to", description:lower()
+                            )
                         end
                     end
                 )

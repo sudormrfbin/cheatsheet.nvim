@@ -73,11 +73,17 @@ around the editor (and for others wanting to scratch the occasional
 I've-been-using-vim-for-years-but-forgot-how-to-scroll-horizontally itch).
 Disable it with `let g:cheatsheet_use_default = v:false`.
 
-| Telescope mappings | Description                                                                        |
-| ---                | ---                                                                                |
-| `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit`                                        |
-| `<C-D>`            | Toggle `g:cheatsheet_use_default`                                                  |
-| `Enter`            | Fill in the command on de commandline. If not a command, print for easy reference. |
+| Telescope mappings | Description                                 |
+| ---                | ---                                         |
+| `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit` |
+| `<C-D>`            | Toggle `g:cheatsheet_use_default`           |
+| `Enter`            | Fill in the command line; see below         |
+
+On `Enter`, if the current selection is a command, it will be filled
+in the command line as if you had typed it (it won't be executed yet).
+Note that it will *stop* filling the command line when it encounters a `{`
+or `[`. So if the cheat is `:set textwidth={n}`, your commandline will
+have `:set textwidth=` typed into it and the cursor at end.
 
 Since `cheatsheet.nvim` provides it's own commands,  it is not required to
 "load" `cheatsheet.nvim` with Telescope which is usually required for plugins
@@ -99,7 +105,18 @@ using Telescope.
     ```
     Open cheatsheet | <leader>?
     Open cheatsheet in floating window | :CheatSheet!
+
+    View mappings | :map [mapping]
+    Set text width to {n} | :set tw={n}
     ```
+
+    Like help files, anything in square brackets is `[optional]` and anything
+    in curly brackets is `{required}` arguments. Some commands require a
+    register or mark or number before them, and they are marked with `{r}`,
+    `{m}`, `{n}`, etc. These are not hard and fast rules, simply conventions in
+    the default cheatsheet -- you can of course ignore them when writing your
+    own cheats (though if you want commands to be presented in the command line
+    properly on pressing `Enter`, see the note about it in the Usage section.)
 
 See this project's [cheatsheet](./cheatsheet.txt) and the
 [default](./doc/cheatsheet-default.txt) included one for more examples.

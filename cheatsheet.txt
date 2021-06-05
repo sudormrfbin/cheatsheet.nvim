@@ -1,5 +1,6 @@
 ## cheatsheet @quick @reference
-Open (in telescope if installed)    | :Cheatsheet , <leader>?
+Open (in telescope if installed)    | :Cheatsheet
+Open (in telescope if installed)    | <leader>?
 Force open in floating window       | :Cheatsheet!
 Open user cheatsheet                | :CheatsheetEdit
 Open user cheatsheet from Telescope | <C-E>
