@@ -95,6 +95,7 @@ M.show_cheatsheet_float = function()
         -- add a newline after every concat (puts the expression '' at file end)
         vim.api.nvim_command("$put =''")
     end
+    vim.cmd("normal! gg0")
 
     vim.api.nvim_buf_set_virtual_text(
         bufhandle, 0, 0,
