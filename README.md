@@ -77,6 +77,7 @@ Disable it with `let g:cheatsheet_use_default = v:false`.
 | ---                | ---                                         |
 | `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit` |
 | `<C-D>`            | Toggle `g:cheatsheet_use_default`           |
+| `<C-Y>`            | Yank the cheatcode                          |
 | `Enter`            | Fill in the command line; see below         |
 
 On `Enter`, if the current selection is a command, it will be filled

@@ -19,6 +19,7 @@ local M = {}
 -- Mappings:
 --     <C-E> - Edit user cheatsheet in new buffer
 --     <C-D> - Toggle including the default cheatsheat
+--     <C-Y> - Yank the cheatcode
 M.pick_cheat = function(opts)
     opts = opts or {}
 
@@ -103,7 +104,7 @@ M.pick_cheat = function(opts)
                             vim.api.nvim_feedkeys(command, "n", true)
                         else
                             vim.api.nvim_echo(
-                                {   -- text, highlight group 
+                                { -- text, highlight group
                                     { "Cheatsheet [", "" },
                                     { section, "cheatMetadataSection" },
                                     { "]: Press ", "" }, { cheat, "cheatCode" },
@@ -127,6 +128,18 @@ M.pick_cheat = function(opts)
                         actions._close(prompt_bufnr, true)
                         utils.toggle_use_default_cheatsheet()
                         M.pick_cheat()
+                    end
+                )
+                map(
+                    'i', '<C-Y>', function()
+                        actions.close(prompt_bufnr)
+                        local selection = actions_state.get_selected_entry()
+                        local cheatcode = selection.value.cheatcode
+                        vim.fn.setreg("0", cheatcode)
+                        vim.api.nvim_echo(
+                            { { "Yanked ", "" }, { cheatcode, "cheatCode" } },
+                                false, {}
+                        )
                     end
                 )
                 return true
