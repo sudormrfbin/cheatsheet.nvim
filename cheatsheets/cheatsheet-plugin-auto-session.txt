@@ -1,0 +1,7 @@
+## auto-session @workspace
+Create (save to filepath if given)       | :SaveSession [filepath]
+Restore cwd state                        | :RestoreSession
+Restore from filepath                    | :RestoreSession {filepath}
+Remove cwd state                         | :DeleteSession
+Remove session at filepath               | :DeleteSession {filepath}
+

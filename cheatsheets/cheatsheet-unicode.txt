@@ -1,0 +1,130 @@
+## box-drawing @lines
+Light horizontal (U+2500)                         | ─
+Heavy horizontal (U+2501)                         | ━
+Light vertical (U+2502)                           | │
+Heavy vertical (U+2503)                           | ┃
+Light triple dash horizontal (U+2504)             | ┄
+Heavy triple dash horizontal (U+2505)             | ┅
+Light triple dash vertical (U+2506)               | ┆
+Heavy triple dash vertical (U+2507)               | ┇
+Light quadruple dash horizontal (U+2508)          | ┈
+Heavy quadruple dash horizontal (U+2509)          | ┉
+Light quadruple dash vertical (U+250A)            | ┊
+Heavy quadruple dash vertical (U+250B)            | ┋
+Light down right (U+250C)                         | ┌
+Down light right heavy (U+250D)                   | ┍
+Down heavy right light (U+250E)                   | ┎
+Heavy down right (U+250F)                         | ┏
+Light down left (U+2510)                          | ┐
+Down light left heavy (U+2511)                    | ┑
+Down heavy left light (U+2512)                    | ┒
+Heavy down left (U+2513)                          | ┓
+Light up right (U+2514)                           | └
+Up light right heavy (U+2515)                     | ┕
+Up heavy right light (U+2516)                     | ┖
+Heavy up right (U+2517)                           | ┗
+Light up left (U+2518)                            | ┘
+Up light left heavy (U+2519)                      | ┙
+Up heavy left light (U+251A)                      | ┚
+Heavy up left (U+251B)                            | ┛
+Light vertical right (U+251C)                     | ├
+Vertical light right heavy (U+251D)               | ┝
+Up heavy right down light (U+251E)                | ┞
+Down heavy right up light (U+251F)                | ┟
+Vertical heavy right light (U+2520)               | ┠
+Down light right up heavy (U+2521)                | ┡
+Up light right down heavy (U+2522)                | ┢
+Heavy vertical right (U+2523)                     | ┣
+Light vertical left (U+2524)                      | ┤
+Vertical light left heavy (U+2525)                | ┥
+Up heavy left down light (U+2526)                 | ┦
+Down heavy left up light (U+2527)                 | ┧
+Vertical heavy left light (U+2528)                | ┨
+Down light left up heavy (U+2529)                 | ┩
+Up light left down heavy (U+252A)                 | ┪
+Heavy vertical left (U+252B)                      | ┫
+Light down horizontal (U+252C)                    | ┬
+Left heavy right down light (U+252D)              | ┭
+Right heavy left down light (U+252E)              | ┮
+Down light horizontal heavy (U+252F)              | ┯
+Down heavy horizontal light (U+2530)              | ┰
+Right light left down heavy (U+2531)              | ┱
+Left light right down heavy (U+2532)              | ┲
+Heavy down horizontal (U+2533)                    | ┳
+Light up horizontal (U+2534)                      | ┴
+Left heavy right up light (U+2535)                | ┵
+Right heavy left up light (U+2536)                | ┶
+Up light horizontal heavy (U+2537)                | ┷
+Up heavy horizontal light (U+2538)                | ┸
+Right light left up heavy (U+2539)                | ┹
+Left light right up heavy (U+253A)                | ┺
+Heavy up horizontal (U+253B)                      | ┻
+Light vertical horizontal (U+253C)                | ┼
+Left heavy right vertical light (U+253D)          | ┽
+Right heavy left vertical light (U+253E)          | ┾
+Vertical light horizontal heavy (U+253F)          | ┿
+Up heavy down horizontal light (U+2540)           | ╀
+Down heavy up horizontal light (U+2541)           | ╁
+Vertical heavy horizontal light (U+2542)          | ╂
+Left up heavy right down light (U+2543)           | ╃
+Right up heavy left down light (U+2544)           | ╄
+Left down heavy right up light (U+2545)           | ╅
+Right down heavy left up light (U+2546)           | ╆
+Down light up horizontal heavy (U+2547)           | ╇
+Up light down horizontal heavy (U+2548)           | ╈
+Right light left vertical heavy (U+2549)          | ╉
+Left light right vertical heavy (U+254A)          | ╊
+Heavy vertical horizontal (U+254B)                | ╋
+Light double dash horizontal (U+254C)             | ╌
+Heavy double dash horizontal (U+254D)             | ╍
+Light double dash vertical (U+254E)               | ╎
+Heavy double dash vertical (U+254F)               | ╏
+Double horizontal (U+2550)                        | ═
+Double vertical (U+2551)                          | ║
+Down single right double (U+2552)                 | ╒
+Down double right single (U+2553)                 | ╓
+Double down right (U+2554)                        | ╔
+Down single left double (U+2555)                  | ╕
+Down double left single (U+2556)                  | ╖
+Double down left (U+2557)                         | ╗
+Up single right double (U+2558)                   | ╘
+Up double right single (U+2559)                   | ╙
+Double up right (U+255A)                          | ╚
+Up single left double (U+255B)                    | ╛
+Up double left single (U+255C)                    | ╜
+Double up left (U+255D)                           | ╝
+Vertical single right double (U+255E)             | ╞
+Vertical double right single (U+255F)             | ╟
+Double vertical right (U+2560)                    | ╠
+Vertical single left double (U+2561)              | ╡
+Vertical double left single (U+2562)              | ╢
+Double vertical left (U+2563)                     | ╣
+Down single horizontal double (U+2564)            | ╤
+Down double horizontal single (U+2565)            | ╥
+Double down horizontal (U+2566)                   | ╦
+Up single horizontal double (U+2567)              | ╧
+Up double horizontal single (U+2568)              | ╨
+Double up horizontal (U+2569)                     | ╩
+Vertical single horizontal double (U+256A)        | ╪
+Vertical double horizontal single (U+256B)        | ╫
+Double vertical horizontal (U+256C)               | ╬
+Light arc down right (U+256D)                     | ╭
+Light arc down left (U+256E)                      | ╮
+Light arc up left (U+256F)                        | ╯
+Light arc up right (U+2570)                       | ╰
+Light diagonal upper right to lower left (U+2571) | ╱
+Light diagonal upper left to lower right (U+2572) | ╲
+Light diagonal cross (U+2573)                     | ╳
+Light left (U+2574)                               | ╴
+Light up (U+2575)                                 | ╵
+Light right (U+2576)                              | ╶
+Light down (U+2577)                               | ╷
+Heavy left (U+2578)                               | ╸
+Heavy up (U+2579)                                 | ╹
+Heavy right (U+257A)                              | ╺
+Heavy down (U+257B)                               | ╻
+Light left heavy right (U+257C)                   | ╼
+Light up heavy down (U+257D)                      | ╽
+Heavy left light right (U+257E)                   | ╾
+Heavy up light down (U+257F)                      | ╿
+

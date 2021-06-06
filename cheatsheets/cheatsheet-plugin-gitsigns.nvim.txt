@@ -1,0 +1,11 @@
+## gitsigns @git
+Stage hunk                               | <leader>hs
+Undo stage hunk                          | <leader>hu
+Stage hunk                               | <leader>hs
+Reset hunk                               | <leader>hr
+Preview hunk                             | <leader>hp
+Reset buffer                             | <leader>hR
+Blame current line                       | <leader>hb
+Next hunk                                | ]c
+Previous hunk                            | ]c
+Hunk text object                         | ih

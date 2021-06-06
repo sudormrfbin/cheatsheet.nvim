@@ -1,0 +1,16 @@
+## sandwich @surround
+Add                                      | sa<char>
+Delete                                   | sd<char>
+Delete (detect surround char)            | sdb
+Replace                                  | sr<before><after>
+Replace (detect surround char)           | srb<after>
+Text object (detect surround char)       | ib, ab
+Surround with function                   | sa<motion/txtobj>f
+Delete surrounding function              | sdf
+Delete outer nested function             | sdF
+Surround with word (Tab to autocomplete) | sa<motion/txtobj>i
+Delete word (accepts regex)              | sdi
+Add HTML tag                             | sa<motion/txtobj>t
+Delete HTML tag                          | sdt
+Replace HTML tag only                    | srtt
+Replace HTML tag and attributes          | srTT
