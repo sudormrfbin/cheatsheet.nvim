@@ -10,6 +10,18 @@ remembering stuff:
 
 <sup>Font: [mononoki](https://madmalik.github.io/mononoki/), Colorscheme: [onedark](https://github.com/joshdick/onedark.vim), [Dotfiles](https://github.com/sudormrfbin/dotfiles2)</sup>
 
+## Features
+
+- Telescope interface to quickly find what you're looking for
+- Simple and portable [cheatsheet format](#cheatsheettxt-file-format) -- simple text file, no lua or vimscript involved
+- [Fill out command line automatically](#auto-fill-commands-from-telescope) (without execution) if selected item in Telescope is a `:command`
+- [Bundled cheatsheets](#bundled-cheatsheets) for:
+    - nerd-fonts, box drawing characters, lua patterns, etc
+    - other plugins like gitsigns, sandwich, easy-align, etc
+- Enable bundled plugin cheatsheets only for plugins you have installed locally
+- Use a `cheatsheet.txt` file from other installed plugins [if found in their directories](#for-plugin-authors)
+- Copy cheats directly from Telescope interface
+
 ## Quickstart
 
 1. Forget how to do `X`
@@ -65,7 +77,7 @@ issue thread to be notified about new features.
 Use the `:Cheatsheet` command which automatically uses Telescope if installed
 or falls back to showing all the cheatsheet files concatenated in a floating
 window. A default mapping `<leader>?` is provided for `:Cheatsheet` 
-(not bound if alerady in use). By default the `<leader>` key is `\`.
+(not bound if already in use). By default the `<leader>` key is `\`.
 
 Your cheatsheet file is a simple text file with the name `cheatsheet.txt` found in
 `~/.config/nvim/` (`~/AppData/Local/nvim/` if you're on Windows) alongside your
@@ -77,28 +89,34 @@ Your cheatsheet file is a simple text file with the name `cheatsheet.txt` found 
 | `<C-Y>`            | Yank the cheatcode                          |
 | `Enter`            | Fill in the command line; see below         |
 
+#### Auto Fill Commands From Telescope
+
 On `Enter`, if the current selection is a command, it will be filled
 in the command line as if you had typed it (it won't be executed yet).
 Note that it will *stop* filling the command line when it encounters a `{`
 or `[`. So if the cheat is `:set textwidth={n}`, your commandline will
 have `:set textwidth=` typed into it and the cursor at end.
 
-Since `cheatsheet.nvim` provides it's own commands,  it is not required to
-"load" `cheatsheet.nvim` with Telescope which is usually required for plugins
-using Telescope.
+> Since `cheatsheet.nvim` provides it's own commands,  it is not required to
+> "load" `cheatsheet.nvim` with Telescope which is usually required for plugins
+> using Telescope.
 
 ## Bundled Cheatsheets
+
+These are the cheatsheets shipped with `cheatsheet.nvim` (PRs welcome!):
 
 - [`default`](./cheatsheets/cheatsheet-default.txt) (vim builtin commands and mappings)
 - [`nerd-fonts`](https://www.nerdfonts.com/) (useful for ricing paired with `<C-Y>` for copying the symbol)
 - `unicode` (currently only has box drawing characters)
+- `markdown` (not fully featured yet)
 
 <details>
   <summary>Plugin cheatsheets (click to expand)</summary>
 
-Ideally plugin authors would supply their own `cheatsheet.txt`, but since that
-is not possible for every plugin, they are collected in
-[cheatsheets/plugins](./cheatsheets/plugins).
+
+  Ideally plugin authors would [supply their own](#for-plugin-authors)
+  `cheatsheet.txt`, but since that is not possible for every plugin, they are
+  collected in [cheatsheets/plugins](./cheatsheets/plugins).
 
   - `auto-session`
   - `gitsigns.nvim`
@@ -107,7 +125,6 @@ is not possible for every plugin, they are collected in
   - `vim-sandwich`
 
 </details>
-
 
 ## Configuration
 
