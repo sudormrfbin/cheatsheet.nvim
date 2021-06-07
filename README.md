@@ -83,6 +83,23 @@ Since `cheatsheet.nvim` provides it's own commands,  it is not required to
 "load" `cheatsheet.nvim` with Telescope which is usually required for plugins
 using Telescope.
 
+## Bundled Cheatsheets
+
+- [`default`](./cheatsheets/cheatsheet-default.txt) (vim builtin commands and mappings)
+- [`nerd-fonts`](https://www.nerdfonts.com/) (useful for ricing paired with `<C-Y>` for copying the symbol)
+- `unicode` (currently only has box drawing characters)
+
+<details>
+  <summary>Plugin cheatsheets (click to expand)</summary>
+
+  - `auto-session`
+  - `gitsigns.nvim`
+  - `telescope.nvim`
+  - `vim-easy-align`
+  - `vim-sandwich`
+</details>
+
+
 ## Configuration
 
 ```lua
@@ -106,7 +123,7 @@ local defaults = {
 ```
 
 `bundled_cheatsheets` and `bundled_plugin_cheatsheets` can also be tables to
-have more fine grained control:
+have more fine grained control for selective usage:
 
 ```lua
 local defaults = {
