@@ -20,9 +20,7 @@ M.dedupe_array = function(array)
 end
 
 M.has_value = function(tbl, value)
-    for _, val in  pairs(tbl) do
-        if val == value then return true end
-    end
+    for _, val in pairs(tbl) do if val == value then return true end end
     return false
 end
 
@@ -47,7 +45,9 @@ end
 -- from cheatsheets/plugins/
 -- @return Array of cheatsheet filepaths
 M.get_bundled_plugin_cheatsheets = function()
-    return vim.api.nvim_get_runtime_file("cheatsheets/plugins/cheatsheet-*.txt", true)
+    return vim.api.nvim_get_runtime_file(
+        "cheatsheets/plugins/cheatsheet-*.txt", true
+    )
 end
 
 return M

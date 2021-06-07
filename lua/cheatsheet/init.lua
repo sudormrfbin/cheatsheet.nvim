@@ -5,9 +5,7 @@ local has_path, path = pcall(require, "plenary.path")
 
 local M = {}
 
-M.setup = function(opts)
-    config.setup(opts)
-end
+M.setup = function(opts) config.setup(opts) end
 
 -- Get `cheatsheet.txt` files from any directory in runtimepath
 -- Inlcudes bundled cheatsheets if configured to do so.
@@ -54,8 +52,14 @@ M.get_cheatsheet_files = function(opts)
     local bundled = utils.get_bundled_cheatsheets()
     local bundled_plugins = utils.get_bundled_plugin_cheatsheets()
 
-    filter_insert(cheats, bundled, '.+/cheatsheets/cheatsheet%-(.+)%.txt', opts.bundled_cheatsheets)
-    filter_insert(cheats, bundled_plugins, '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt', opts.bundled_plugin_cheatsheets)
+    filter_insert(
+        cheats, bundled, '.+/cheatsheets/cheatsheet%-(.+)%.txt',
+            opts.bundled_cheatsheets
+    )
+    filter_insert(
+        cheats, bundled_plugins, '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt',
+            opts.bundled_plugin_cheatsheets
+    )
 
     -- https://github.com/neovim/neovim/issues/14294
     -- returned table may have duplicated entries
