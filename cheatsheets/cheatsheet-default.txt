@@ -158,11 +158,6 @@ Use hard tabs                        | :set noet
 Use soft tabs (spaces)               | :set et
 Detab (needs 'et' on)                | :retab
 Entab (needs 'et' off)               | :retab!
-Toggle spell checking                | :setl spell!
-To next misspelled word              | ]s
-To prev misspelled word              | [s
-Suggest corrections                  | z=
-Suggest corrections                  | <C-x>s
 Set text width to {n}                | :set tw={n}
 Sort selected lines                  | :sort
 Sort+remove duplicates               | :sort u
@@ -176,6 +171,19 @@ Insert digraph                       | <C-k>{c}{c}
 Insert calculated expr.              | <C-r>=
 Increment number by {n}              | {n}<C-a>
 Decrement number by {n}              | {n}<C-x>
+
+## spell-vim
+Toggle spell checking                | :setl spell!
+To next misspelled word              | ]s
+To prev misspelled word              | [s
+Suggest corrections (normal mode)    | z=
+Suggest corrections (insert mode)    | <C-x>s
+Permanently mark as correct          | zg
+Undo mark as correct                 | zug
+Temporarily mark as correct          | zG
+Permanently mark as incorrect        | zw
+Undo mark as incorrect               | zuw
+Temporarily mark as incorrect        | zW
 
 ## navigation-vim
 Scroll down a page                   | <C-f>
@@ -195,12 +203,8 @@ Toggle soft-wrapping                 | :setl wrap!
 Page guide at column {n}             | :setl cc={n}
 No page guide                        | :setl cc=
 Toggle line numbers                  | :setl nu!
-Toggle rel. line numbers             | :setl rnu!
+Toggle relative line numbers         | :setl rnu!
 Toggle invisibles                    | :setl list!
-Fold                                 | zc
-Unfold                               | zv
-Toggle fold                          | za
-Fold all                             | zM
 Unfold all                           | zR
 Show files                           | :ls
 Edit buffer (autocomplete)           | :b <Tab>
@@ -216,24 +220,31 @@ Go to file under cursor              | gf
 Line/word/char count                 | g<C-g>
 Toggle cursorline                    | :setl cul!
 Toggle search highlight              | :setl hls!
+Cycle match groups (eg. if,else,end) | g%
 
 ## search-vim
 Toggle ignore case                   | :set ic!
 Search forward for {P}               | /{P}
 Search backward for {P}              | ?{P}
-Jump to next match                   | n
-Jump to previous match               | N
+Go to next match                     | n
+Go to previous match                 | N
 Select up to next match              | gn
 Select up to prev match              | gN
 Search word under cursor backward    | *
 Search word under cursor forward     | #
+Go to next match during search       | <C-G>
+Go to previous match during search   | <C-T>
 Find and replace                     | :s/{P}/{P}/g
 Find and replace confirm             | :s/{P}/{P}/gc
 Find and replace all                 | :%s/{P}/{P}/g
+Open quickfix                        | :copen
 Prev in quickfix list                | :cp
 Next in quickfix list                | :cn
+Close quickfix                       | :cclose
+Open location list                   | :lopen
 Prev in location list                | :lp
 Next in location list                | :lne
+Close location list                  | :lclose
 Next command (command mode)          | <C-n>
 Prev command (command mode)          | <C-p>
 Browse command history               | q:
@@ -307,8 +318,23 @@ Remove marks                         | :delmarks {mark}
 Jump to definition                   | gd
 To prev jump position                | <C-o>
 To next jump position                | <C-i>
-To start of next fold                | zj
-To end of previous fold              | zk
+Go to last insertion and INSERT      | gi
+
+## folds-vim
+Go to start of next fold             | zj
+Go to end of previous fold           | zk
+Open fold under cursor               | zo
+Open all folds under cursor          | zO
+Close fold under cursor              | zc
+Close all folds under cursor         | zC
+Toggle fold under cursor             | za
+Toggle all folds under cursor        | zA
+Open folds to show cursor line       | zv
+Close all folds                      | zM
+Open all folds                       | zR
+Fold more                            | zm
+Fold less                            | zr
+Update folds                         | zx
 
 ## window-vim
 New horizontal split                 | :new
