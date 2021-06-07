@@ -1,9 +1,10 @@
 # cheatsheet.nvim
 
 A searchable cheatsheet for neovim from within the editor using
-[Telescope](https://github.com/nvim-telescope/telescope.nvim)
-(fallback to displaying in a floating window if Telescope is not
-installed), because hoomans suck at remembering stuff:
+[Telescope](https://github.com/nvim-telescope/telescope.nvim) (fallback to
+displaying in a floating window if Telescope is not installed) with bundled
+cheats for the editor, vim plugins, nerd-fonts, etc because hoomans suck at
+remembering stuff:
 
 ![cheatsheet.nvim with Telescope](https://user-images.githubusercontent.com/23398472/120632733-e6191f80-c486-11eb-90d6-e26bacf83c20.png)
 
@@ -27,7 +28,7 @@ Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```viml
 Plug 'sudormrfbin/cheatsheet.nvim'
-" optional
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -37,7 +38,7 @@ Using [dein](https://github.com/Shougo/dein.vim)
 
 ```viml
 call dein#add('sudormrfbin/cheatsheet.nvim')
-" optional
+
 call dein#add('nvim-lua/popup.nvim')
 call dein#add('nvim-lua/plenary.nvim')
 call dein#add('nvim-telescope/telescope.nvim')
@@ -47,7 +48,7 @@ Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 ```lua
 use {
   'sudormrfbin/cheatsheet.nvim',
-  -- optional
+
   requires = {
     {'nvim-telescope/telescope.nvim'},
     {'nvim-lua/popup.nvim'},
@@ -55,6 +56,9 @@ use {
   }
 }
 ```
+
+Subscribe to the [Updates](https://github.com/sudormrfbin/cheatsheet.nvim/issues/1)
+issue thread to be notified about new features.
 
 ## Usage
 
@@ -173,7 +177,7 @@ local defaults = {
     properly on pressing `Enter`, see the note about it in the Usage section.)
 
 See this project's [cheatsheet](./cheatsheet.txt) and the
-[default](./doc/cheatsheet-default.txt) included one for more examples.
+[default](./cheatsheets/cheatsheet-default.txt) included one for more examples.
 
 ## For Plugin Authors
 
