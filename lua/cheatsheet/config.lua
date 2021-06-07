@@ -17,6 +17,10 @@ local defaults = {
     --     disabled = {},
     -- }
     bundled_plugin_cheatsheets = true,
+    -- For bundled plugin cheatsheets, do not show a sheet if you
+    -- don't have the plugin installed (searches runtimepath for
+    -- same directory name)
+    include_only_installed_plugins = true,
 }
 
 M.options = {}

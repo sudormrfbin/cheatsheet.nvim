@@ -1,5 +1,6 @@
 local utils = require('cheatsheet.utils')
 local config = require('cheatsheet.config')
+local filter_insert = utils.filter_insert
 -- plenary is only used for telescope specific code
 local has_path, path = pcall(require, "plenary.path")
 
@@ -9,55 +10,39 @@ M.setup = function(opts) config.setup(opts) end
 
 -- Get `cheatsheet.txt` files from any directory in runtimepath
 -- Inlcudes bundled cheatsheets if configured to do so.
--- @param *opts* config.optsa like table
+-- @param *opts* config.options like table
 -- @return array of filepaths
 M.get_cheatsheet_files = function(opts)
     opts = opts or config.options
 
-    -- Insert elements from `from_tbl` into `ins_tbl`. If `include` is a bool,
-    -- it controls appending everything in `from_tbl` to `ins_tbl`. If it is a
-    -- table, Use `pattern` to extract a match from an element in `from_tbl`
-    -- and insert only if match is present in `include.enabled` or not present
-    -- in `include.disabled`.
-    local function filter_insert(ins_tbl, from_tbl, pattern, include)
-        if include == false then return end
-
-        if include == true then
-            for _, file in ipairs(from_tbl) do
-                table.insert(ins_tbl, file)
-            end
-            return
+    -- see include argument of utils.filter_insert
+    local plugin_include = {}
+    if opts.include_only_installed_plugins then
+        local rtp_dirs = {}
+        for _, dir in pairs(vim.api.nvim_list_runtime_paths()) do
+            table.insert(rtp_dirs, dir:match(".+/(.+)"))
         end
-        assert(type(include) == "table", "Invalid table format")
-
-        if include.enabled ~= nil then
-            for _, element in ipairs(from_tbl) do
-                local match = element:match(pattern)
-                if utils.has_value(include.enabled, match) then
-                    table.insert(ins_tbl, element)
-                end
-            end
-        elseif include.disabled ~= nil then
-            for _, element in ipairs(from_tbl) do
-                local match = element:match(pattern)
-                print(match)
-                if not utils.has_value(include.disabled, match) then
-                    table.insert(ins_tbl, element)
-                end
-            end
-        end
+        plugin_include = { enabled = rtp_dirs }
+    else
+        plugin_include = true
     end
+
+    local cheatsheet_name_pat = '.+/cheatsheets/cheatsheet%-(.+)%.txt'
+    local cheatsheet_plugin_name_pat =
+        '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt'
+
+    local bundled_plugins = {}
+    filter_insert(
+        bundled_plugins, utils.get_bundled_plugin_cheatsheets(),
+            cheatsheet_plugin_name_pat, plugin_include
+    )
 
     local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
     local bundled = utils.get_bundled_cheatsheets()
-    local bundled_plugins = utils.get_bundled_plugin_cheatsheets()
+    filter_insert(cheats, bundled, cheatsheet_name_pat, opts.bundled_cheatsheets)
 
     filter_insert(
-        cheats, bundled, '.+/cheatsheets/cheatsheet%-(.+)%.txt',
-            opts.bundled_cheatsheets
-    )
-    filter_insert(
-        cheats, bundled_plugins, '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt',
+        cheats, bundled_plugins, cheatsheet_plugin_name_pat,
             opts.bundled_plugin_cheatsheets
     )
 

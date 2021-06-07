@@ -111,8 +111,10 @@ is not possible for every plugin, they are collected in
 
 ## Configuration
 
+This is the default configuration:
+
 ```lua
-local defaults = {
+require("cheatsheet").setup({
     -- Whether to show bundled cheatsheets
 
     -- For generic cheatsheets like default, unicode, nerd-fonts, etc
@@ -128,14 +130,19 @@ local defaults = {
     --     enabled = {},
     --     disabled = {},
     -- }
-}
+
+    -- For bundled plugin cheatsheets, do not show a sheet if you
+    -- don't have the plugin installed (searches runtimepath for
+    -- same directory name)
+    include_only_installed_plugins = true,
+})
 ```
 
 `bundled_cheatsheets` and `bundled_plugin_cheatsheets` can also be tables to
 have more fine grained control for selective usage:
 
 ```lua
-local defaults = {
+require("cheatsheet").setup({
     bundled_cheatsheets = {
         -- only show the default cheatsheet
         enabled = { "default" },
@@ -144,7 +151,7 @@ local defaults = {
         -- show cheatsheets for all plugins except gitsigns
         disabled = { "gitsigns.nvim" },
     }
-}
+})
 ```
 
 ## `cheatsheet.txt` File Format
