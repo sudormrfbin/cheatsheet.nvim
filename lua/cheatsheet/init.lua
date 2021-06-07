@@ -78,7 +78,7 @@ M.get_cheats = function()
 
     local cheats = {}
     for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
-        local section = "Default"
+        local section = "default"
         local tags = {}
         for _, line in ipairs(path.readlines(cheatfile)) do
             -- prase section if line is meatadata comment
