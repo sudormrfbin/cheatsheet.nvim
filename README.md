@@ -92,11 +92,16 @@ using Telescope.
 <details>
   <summary>Plugin cheatsheets (click to expand)</summary>
 
+Ideally plugin authors would supply their own `cheatsheet.txt`, but since that
+is not possible for every plugin, they are collected in
+[cheatsheets/plugins](./cheatsheets/plugins).
+
   - `auto-session`
   - `gitsigns.nvim`
   - `telescope.nvim`
   - `vim-easy-align`
   - `vim-sandwich`
+
 </details>
 
 
@@ -178,13 +183,6 @@ and displayed on `:Cheatsheet`.  You don't have to add the file to your repo
 *solely* to support searching it using `cheatsheet.nvim` -- the format is
 simple enough to be opened and read normally and can serve as a great
 quickstart for users.
-
-## Additional Cheatsheets
-
-Cheats for other plugins are collected in [contrib](./contrib/cheatsheet.txt). Ideally
-plugin authors would supply their own `cheatsheet.txt`, but since
-that is not possible for every plugin, they are collected here.
-You can copy them at your leisure.
 
 ## Acknowledgements
 
