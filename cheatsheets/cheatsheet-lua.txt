@@ -1,0 +1,27 @@
+## lua-patterns @regex
+Letters (A-Z, a-z)                    | %a
+Non letters                           | %A
+Control characters (\n, \t, \r, ...)  | %c
+Digits (0-9)                          | %d
+Non digits                            | %D
+Lower-case letter (a-z)               | %l
+Upper-case letter (A-Z)               | %u
+Punctuation characters (!, ?, &, ...) | %p
+Not punctuation characters            | %P
+Whitespace                            | %s
+Non whitespace                        | %S
+Alphanumerics (A-Z, a-z, 0-9)         | %w
+Non alphanumeric                      | %W
+Hexadecimal digits (\3, \4, ...)      | %x
+Character with representation 0       | %z
+Any character                         | .
+Escape the character {c} (eg. "%.")   | %c
+Any one of "abc" (character set)      | [abc]
+Invert (complement) character set     | [^]
+One or more repetitions               | +
+Zero or more repetitions (greedy)     | *
+Zero or more repetitions (non-greedy) | -
+Optional (zero or one occurrence)     | ?
+Get nth captured match (n=1..9)       | %n
+Frontier pattern                      | %f[set]
+Balanced match between {X} and {Y}    | %bXY
