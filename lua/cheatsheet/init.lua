@@ -1,16 +1,62 @@
 local utils = require('cheatsheet.utils')
+local config = require('cheatsheet.config')
 -- plenary is only used for telescope specific code
 local has_path, path = pcall(require, "plenary.path")
 
 local M = {}
--- Get `cheatsheet.txt` files from any directory in runtimepath
--- @return array of filepaths
-M.get_cheatsheet_files = function()
-    local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
 
-    if utils.is_using_default_cheatsheet() then
-        table.insert(cheats, utils.get_default_cheatsheet())
+M.setup = function(opts)
+    config.setup(opts)
+end
+
+-- Get `cheatsheet.txt` files from any directory in runtimepath
+-- Inlcudes bundled cheatsheets if configured to do so.
+-- @param *opts* config.optsa like table
+-- @return array of filepaths
+M.get_cheatsheet_files = function(opts)
+    opts = opts or config.options
+
+    -- Insert elements from `from_tbl` into `ins_tbl`. If `include` is a bool,
+    -- it controls appending everything in `from_tbl` to `ins_tbl`. If it is a
+    -- table, Use `pattern` to extract a match from an element in `from_tbl`
+    -- and insert only if match is present in `include.enabled` or not present
+    -- in `include.disabled`.
+    local function filter_insert(ins_tbl, from_tbl, pattern, include)
+        if include == false then return end
+
+        if include == true then
+            for _, file in ipairs(from_tbl) do
+                table.insert(ins_tbl, file)
+            end
+            return
+        end
+        assert(type(include) == "table", "Invalid table format")
+
+        if include.enabled ~= nil then
+            for _, element in ipairs(from_tbl) do
+                local match = element:match(pattern)
+                if utils.has_value(include.enabled, match) then
+                    table.insert(ins_tbl, element)
+                end
+            end
+        elseif include.disabled ~= nil then
+            for _, element in ipairs(from_tbl) do
+                local match = element:match(pattern)
+                print(match)
+                if not utils.has_value(include.disabled, match) then
+                    table.insert(ins_tbl, element)
+                end
+            end
+        end
     end
+
+    local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
+    local bundled = utils.get_bundled_cheatsheets()
+    local bundled_plugins = utils.get_bundled_plugin_cheatsheets()
+
+    filter_insert(cheats, bundled, '.+/cheatsheets/cheatsheet%-(.+)%.txt', opts.bundled_cheatsheets)
+    filter_insert(cheats, bundled_plugins, '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt', opts.bundled_plugin_cheatsheets)
+
     -- https://github.com/neovim/neovim/issues/14294
     -- returned table may have duplicated entries
     return utils.dedupe_array(cheats)

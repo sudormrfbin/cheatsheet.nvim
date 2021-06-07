@@ -122,15 +122,6 @@ M.pick_cheat = function(opts)
                     end
                 )
                 map(
-                    'i', '<C-D>', function()
-                        -- _close with keepinsert=true to support opening another
-                        -- telescope window (here same window) from current one
-                        actions._close(prompt_bufnr, true)
-                        utils.toggle_use_default_cheatsheet()
-                        M.pick_cheat()
-                    end
-                )
-                map(
                     'i', '<C-Y>', function()
                         actions.close(prompt_bufnr)
                         local selection = actions_state.get_selected_entry()

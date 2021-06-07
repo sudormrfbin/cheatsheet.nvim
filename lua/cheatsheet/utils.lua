@@ -19,6 +19,13 @@ M.dedupe_array = function(array)
     return result
 end
 
+M.has_value = function(tbl, value)
+    for _, val in  pairs(tbl) do
+        if val == value then return true end
+    end
+    return false
+end
+
 -- Get the user's cheatsheet.txt located in config directory (~/.config/nvim)
 M.get_user_cheatsheet = function()
     return vim.fn.stdpath("config") .. "/cheatsheet.txt"
@@ -29,25 +36,18 @@ M.edit_user_cheatsheet = function()
     vim.api.nvim_command(":edit " .. M.get_user_cheatsheet())
 end
 
--- Get the cheatsheet included with the plugin containing a generic vim cheatsheet
--- @return path to defautl cheatsheet
-M.get_default_cheatsheet = function()
-    return vim.api.nvim_get_runtime_file("doc/cheatsheet-default.txt", false)[1]
+-- Get the list of cheatsheets bundled with this plugin,
+-- from cheatsheets/. Does not include plugin cheatsheets.
+-- @return Array of cheatsheet filepaths
+M.get_bundled_cheatsheets = function()
+    return vim.api.nvim_get_runtime_file("cheatsheets/cheatsheet-*.txt", true)
 end
 
-M.is_using_default_cheatsheet = function()
-    local var_is_defined, use_default = pcall(
-        vim.api.nvim_get_var, 'cheatsheet_use_default'
-    )
-    if var_is_defined and use_default then return true end
-    return false
-
-end
-
-M.toggle_use_default_cheatsheet = function()
-    vim.api.nvim_set_var(
-        'cheatsheet_use_default', not M.is_using_default_cheatsheet()
-    )
+-- Get the list of plugin cheatsheets bundled with this plugin,
+-- from cheatsheets/plugins/
+-- @return Array of cheatsheet filepaths
+M.get_bundled_plugin_cheatsheets = function()
+    return vim.api.nvim_get_runtime_file("cheatsheets/plugins/cheatsheet-*.txt", true)
 end
 
 return M

@@ -67,16 +67,9 @@ Your cheatsheet file is a simple text file with the name `cheatsheet.txt` found 
 `~/.config/nvim/` (`~/AppData/Local/nvim/` if you're on Windows) alongside your
 `init.vim`. Use the `:CheatsheetEdit` command to open it in a buffer to edit.
 
-A [builtin cheatsheet](./doc/cheatsheet-default.txt) lists most of the useful
-inbuilt vim mappings and commands, useful for people still finding their way
-around the editor (and for others wanting to scratch the occasional
-I've-been-using-vim-for-years-but-forgot-how-to-scroll-horizontally itch).
-Disable it with `let g:cheatsheet_use_default = v:false`.
-
 | Telescope mappings | Description                                 |
 | ---                | ---                                         |
 | `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit` |
-| `<C-D>`            | Toggle `g:cheatsheet_use_default`           |
 | `<C-Y>`            | Yank the cheatcode                          |
 | `Enter`            | Fill in the command line; see below         |
 
@@ -89,6 +82,44 @@ have `:set textwidth=` typed into it and the cursor at end.
 Since `cheatsheet.nvim` provides it's own commands,  it is not required to
 "load" `cheatsheet.nvim` with Telescope which is usually required for plugins
 using Telescope.
+
+## Configuration
+
+```lua
+local defaults = {
+    -- Whether to show bundled cheatsheets
+
+    -- For generic cheatsheets like default, unicode, nerd-fonts, etc
+    bundled_cheatsheets = true,
+    -- bundled_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- },
+
+    -- For plugin specific cheatsheets
+    bundled_plugin_cheatsheets = true,
+    -- bundled_plugin_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- }
+}
+```
+
+`bundled_cheatsheets` and `bundled_plugin_cheatsheets` can also be tables to
+have more fine grained control:
+
+```lua
+local defaults = {
+    bundled_cheatsheets = {
+        -- only show the default cheatsheet
+        enabled = { "default" },
+    },
+    bundled_plugin_cheatsheets = {
+        -- show cheatsheets for all plugins except gitsigns
+        disabled = { "gitsigns.nvim" },
+    }
+}
+```
 
 ## `cheatsheet.txt` File Format
 
