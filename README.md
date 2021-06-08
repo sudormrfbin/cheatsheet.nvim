@@ -2,11 +2,11 @@
 
 A searchable cheatsheet for neovim from within the editor using
 [Telescope](https://github.com/nvim-telescope/telescope.nvim) (fallback to
-displaying in a floating window if Telescope is not installed) with bundled
-cheats for the editor, vim plugins, nerd-fonts, etc because hoomans suck at
+displaying in a floating window if Telescope is not installed) with command autofill,
+bundled cheats for the editor, vim plugins, nerd-fonts, etc because hoomans suck at
 remembering stuff:
 
-![cheatsheet.nvim with Telescope](https://user-images.githubusercontent.com/23398472/120632733-e6191f80-c486-11eb-90d6-e26bacf83c20.png)
+![cheatsheet.nvim gif](https://user-images.githubusercontent.com/23398472/121174386-7a182c00-c877-11eb-979b-5d5e6f8267d8.gif)
 
 <sup>Font: [mononoki](https://madmalik.github.io/mononoki/), Colorscheme: [onedark](https://github.com/joshdick/onedark.vim), [Dotfiles](https://github.com/sudormrfbin/dotfiles2)</sup>
 
