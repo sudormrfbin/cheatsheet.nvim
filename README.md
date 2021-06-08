@@ -108,6 +108,7 @@ These are the cheatsheets shipped with `cheatsheet.nvim` (PRs welcome!):
 - [`default`](./cheatsheets/cheatsheet-default.txt) (vim builtin commands and mappings)
 - [`nerd-fonts`](https://www.nerdfonts.com/) (useful for ricing paired with `<C-Y>` for copying the symbol)
 - `unicode` (currently only has box drawing characters)
+- `regex` (PCRE)
 - `markdown` (not fully featured yet)
 
 <details>

@@ -1,0 +1,63 @@
+# https://github.com/niklongstone/regular-expression-cheat-sheet
+
+## pcre-anchor @regex
+Start of string or line                           | ^
+Start of string in any match mode                 | \A
+End of string or line                             | $
+End of string in any match mode.                  | \z
+End of prev match/start of string for first match | \G
+Word boundary (between word and non word)         | \b
+Not word-boundary                                 | \B
+Class definition                                  | [ ]
+Class definition range                            | [ - ]
+Escape inside class                               | [ \ ]
+Not in class (invert)                             | [^ ]
+Match any chars except new line                   | .
+White space, [\n\r\f\t ]                          | \s
+Not white space, [^\n\r\f\t]                      | \S
+Digit                                             | \d
+Non-digit                                         | \D
+Word [a-z-A-Z0-9_]                                | \w
+Non word [^a-z-A-Z0-9_]                           | \W
+
+## pcre-special @regex
+General escape                                    | \\
+New line                                          | \n
+Carriage return                                   | \r
+Tab                                               | \t
+Vertical tab                                      | \v
+Form feed                                         | \f
+Alarm                                             | \a
+Backspace                                         | [\b]
+Escape                                            | \e
+Ctrl + char(\cc is Ctrl+c)                        | \cchar
+Three digit octal (\123)                          | \ooo
+One or two digit hexadecimal (\x10)               | \xhh
+Any hexadecimal code (\x{1234})                   | \x{hex}
+Char with unicode property (\p{Arabic}            | \p{xx}
+Char without unicode property                     | \P{xx}
+
+## pcre-sequence @regex
+Subpattern                                        | ( )
+Subpattern, capture submatch into "name"          | (?P\<name>...)
+Subpattern, do not capture submatch               | (?:...)
+One or more quantifier                            | +
+Zero or more quantifier                           | *
+Zero or one quantifier                            | ?
+Zero or one (lazy)                                | ??
+One or more (lazy)                                | +?
+Zero or more (lazy)                               | *?
+Match n times exactly                             | {n}
+From n to m times                                 | {n,m}
+At least n times                                  | {n,}
+If-then pattern                                   | (?(condition)...)
+If-then-else-pattern                              | (?(condition)...\|...)
+Alternation                                       | |
+
+## pcre-assertions @regex
+Positive lookahead                                | (?=...)
+Negative lookahead                                | (?!...)
+Positive look-behind                              | (?<=...)
+Negative look-behind                              | (?<!...)
+
+
