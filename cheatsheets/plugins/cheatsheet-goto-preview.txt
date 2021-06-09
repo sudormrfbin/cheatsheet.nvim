@@ -1,0 +1,4 @@
+## goto-preview @floating-window
+Open lsp definition        | gpd
+Open lsp implementation    | gpi
+Close all floating windows | gP
