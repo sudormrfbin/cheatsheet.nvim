@@ -124,6 +124,7 @@ These are the cheatsheets shipped with `cheatsheet.nvim` (PRs welcome!):
   - `telescope.nvim`
   - `vim-easy-align`
   - `vim-sandwich`
+  - `goto-preview`
 
 </details>
 
