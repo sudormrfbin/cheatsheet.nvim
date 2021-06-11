@@ -10,6 +10,19 @@ remembering stuff:
 
 <sup>Font: [mononoki](https://madmalik.github.io/mononoki/), Colorscheme: [onedark](https://github.com/joshdick/onedark.vim), [Dotfiles](https://github.com/sudormrfbin/dotfiles2)</sup>
 
+## Table of Contents
+
+* [Features](#features)
+* [Quickstart](#quickstart)
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Auto Fill Commands From Telescope](#auto-fill-commands-from-telescope)
+* [Bundled Cheatsheets](#bundled-cheatsheets)
+* [Configuration](#configuration)
+* [`cheatsheet.txt` File Format](#cheatsheettxt-file-format)
+* [For Plugin Authors](#for-plugin-authors)
+* [Acknowledgements](#acknowledgements)
+
 ## Features
 
 - Telescope interface to quickly find what you're looking for
