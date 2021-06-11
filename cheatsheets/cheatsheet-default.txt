@@ -380,6 +380,18 @@ Move window to new tab               | <C-w>T
 Open one tab per buffer              | :tab ball
 Execute {Cmd} in all tabs            | :tabdo {Cmd}
 
+## filename-modifiers-vim
+Full path                            | :p
+Relative to $HOME                    | :~
+Relative to current directory        | :.
+Filename only (tail)                 | :t
+Remove last extension (get root)     | :r
+Extension only                       | :e
+Escape special chars (use in shell)  | :S
+Substitute first                     | :s?pat?sub?
+Substitute all                       | :gs?pat?sub?
+Get directory of file                | :p:h
+
 ## help-vim
 Help                                 | :h [helptag]
 Help search                          | :helpgrep {searchterm}
