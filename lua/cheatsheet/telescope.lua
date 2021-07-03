@@ -36,7 +36,7 @@ M.pick_cheat = function(opts)
                     -- But the cheatcode is what we *don't* know and the description is
                     -- what we already know. So show description first for better UX.
                     local width = telescope_utils.get_default(
-                        opts.results_width, config.values.results_width
+                        opts.width, config.values.width
                     )
                     local cols = vim.o.columns
                     local tel_win_width = math.floor(cols * width)
