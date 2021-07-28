@@ -1,0 +1,54 @@
+## octo @github
+
+Close issue/PR                         | <space>ic
+Reopen issue/PR                        | <space>io
+List open issues/PRs on same repo      | <space>il
+Reload issue/PR                        | <C-r>
+Open issue/PR in browser               | <C-b>
+Copy url to system clipboard           | <C-y>
+Add assignee                           | <space>aa
+Remove assignee                        | <space>ad
+Create label                           | <space>lc
+Add label                              | <space>la
+Remove label                           | <space>ld
+Navigate to a local repo issue         | <space>gi
+Add comment                            | <space>ca
+Delete comment                         | <space>cd
+Go to next comment                     | ]c
+Go to previous comment                 | [c
+Add/remove 🎉 reaction                 | <space>rp
+Add/remove ❤️ reaction                  | <space>rh
+Add/remove 👀 reaction                 | <space>re
+Add/remove 👍 reaction                 | <space>r+
+Add/remove 👎 reaction                 | <space>r-
+Add/remove 🚀 reaction                 | <space>rr
+Add/remove 😄 reaction                 | <space>rl
+Add/remove 😕 reaction                 | <space>rc
+Checkout PR                            | <space>po
+Merge PR                               | <space>pm
+List PR commits                        | <space>pc
+List PR changed files                  | <space>pf
+Show PR diff                           | <space>pd
+Add reviewer                           | <space>va
+Remove reviewer request                | <space>vd
+Move to previous changed file          | ]q
+Move to next changed file              | [q
+Close review tab                       | <C-c>
+Approve review (submit window)         | <C-a>
+Comment review (submit window)         | <C-m>
+Request changes review (submit window) | <C-r>
+Close review tab (submit window)       | <C-c>
+Add a new review comment               | <space>ca
+Add a new review suggestion            | <space>sa
+Move focus to changed file panel       | <leader>e
+Hide/show changed files panel          | <leader>b
+Move to next thread                    | ]t
+Move to previous thread                | [t
+Move to previous changed file          | ]q
+Move to next changed file              | [q
+Close review tab                       | <C-c>
+Toggle viewer viewed state             | <leader><space>
+Next changed file in file panel        | j
+Previous changed file in file panel    | k
+Show selected changed file diffs       | <cr>
+Refresh changed files panel            | R

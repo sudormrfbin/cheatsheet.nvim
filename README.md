@@ -138,6 +138,7 @@ These are the cheatsheets shipped with `cheatsheet.nvim` (PRs welcome!):
   - `vim-easy-align`
   - `vim-sandwich`
   - `goto-preview`
+  - `octo.nvim`
 
 </details>
 
