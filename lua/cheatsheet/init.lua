@@ -78,7 +78,7 @@ end
 -- Also included cheats from _loaded_cheats.
 -- Ignores comments and newlines (except for metadata comments).
 -- @return array of {description, cheatcode, section, {tags}} for each cheat
-M.get_cheats = function()
+M.get_cheats = function(opts)
     assert(has_path, "plenary.nvim not installed")
 
     local section_pat = '^##%s*(%S*)'
@@ -86,7 +86,7 @@ M.get_cheats = function()
     local cheatline_pat = '^([^#]-)%s*|%s*(.-)%s*$'
 
     local cheats = {}
-    for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
+    for _, cheatfile in ipairs(M.get_cheatsheet_files(opts)) do
         local section = "default"
         local tags = {}
         for _, line in ipairs(path.readlines(cheatfile)) do
@@ -127,7 +127,7 @@ end
 
 -- Use a floating window to show cheatsheets in a syntax highlighted buffer
 -- NOTE: Does *not* show cheats added using `add_cheats` yet (TODO)
-M.show_cheatsheet_float = function()
+M.show_cheatsheet_float = function(opts)
     -- handle to an unlisted scratch buffer
     local bufhandle = vim.api.nvim_create_buf(false, true)
     assert(bufhandle, "Could not open temp buffer")
@@ -151,7 +151,7 @@ M.show_cheatsheet_float = function()
     local winhandle = vim.api.nvim_open_win(bufhandle, true, float_opts)
     assert(winhandle, "Could not open floating window")
 
-    for _, cheatfile in ipairs(M.get_cheatsheet_files()) do
+    for _, cheatfile in ipairs(M.get_cheatsheet_files(opts)) do
         vim.api.nvim_command("$read " .. cheatfile)
         -- add a newline after every concat (puts the expression '' at file end)
         vim.api.nvim_command("$put =''")
@@ -182,17 +182,17 @@ M.show_cheatsheet_float = function()
 end
 
 -- Use Telescope to show and filter cheatsheets
-M.show_cheatsheet_telescope = function(opts)
-    require('cheatsheet.telescope').pick_cheat(opts)
+M.show_cheatsheet_telescope = function(opts, telescope_opts)
+    require('cheatsheet.telescope').pick_cheat(telescope_opts, opts)
 end
 
 -- Use Telescope for displaying cheatsheets and if not installed, use the
 -- builtin floating window method.
-M.show_cheatsheet = function(opts)
+M.show_cheatsheet = function(opts, telescope_opts)
     if pcall(require, 'telescope') then
-        M.show_cheatsheet_telescope(opts)
+        M.show_cheatsheet_telescope(opts, telescope_opts)
     else
-        M.show_cheatsheet_float()
+        M.show_cheatsheet_float(opts)
     end
 end
 

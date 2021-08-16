@@ -19,14 +19,14 @@ local M = {}
 --     <C-E> - Edit user cheatsheet in new buffer
 --     <C-D> - Toggle including the default cheatsheat
 --     <C-Y> - Yank the cheatcode
-M.pick_cheat = function(opts)
-    opts = opts or {}
+M.pick_cheat = function(telescope_opts, opts)
+    telescope_opts = telescope_opts or {}
 
     pickers.new(
-        opts, {
+        telescope_opts, {
             prompt_title = 'Cheat',
             finder = finders.new_table {
-                results = cheatsheet.get_cheats(),
+                results = cheatsheet.get_cheats(opts),
                 entry_maker = function(entry)
                     -- Calculate the width of each column dynamically so that both
                     -- the description and cheatcode is readable on small terminals too.
@@ -141,7 +141,7 @@ M.pick_cheat = function(opts)
                 )
                 return true
             end,
-            sorter = config.values.generic_sorter(opts),
+            sorter = config.values.generic_sorter(telescope_opts),
         }
     ):find()
 end
