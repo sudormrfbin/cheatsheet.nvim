@@ -51,7 +51,31 @@ M.get_cheatsheet_files = function(opts)
     return utils.dedupe_array(cheats)
 end
 
+-- For storing cheats that are added programmatically.
+-- array of {description, cheatcode, section, {tags}}
+M._loaded_cheats = {}
+
+-- Add a cheat which will be shown alongside cheats loaded from cheatsheet files.
+-- @param description: string
+-- @param cheatcode: string
+-- @param section: string
+-- @param tags: array of alternative names for the section
+-- TODO: Cheats added this way are not shown in the floating window, only telescope
+M.add_cheat = function(description, cheatcode, section, tags)
+    section = section or "default"
+    tags = tags or {}
+    table.insert(
+        M._loaded_cheats, {
+            section = section,
+            description = description,
+            tags = tags,
+            cheatcode = cheatcode,
+        }
+    )
+end
+
 -- Aggregates cheats from cheatsheets and returns a structured repr.
+-- Also included cheats from _loaded_cheats.
 -- Ignores comments and newlines (except for metadata comments).
 -- @return array of {description, cheatcode, section, {tags}} for each cheat
 M.get_cheats = function()
@@ -66,7 +90,7 @@ M.get_cheats = function()
         local section = "default"
         local tags = {}
         for _, line in ipairs(path.readlines(cheatfile)) do
-            -- prase section if line is meatadata comment
+            -- parse section if line is metadata comment
             local maybe_section = line:match(section_pat)
             if maybe_section then
                 section = maybe_section
@@ -97,10 +121,12 @@ M.get_cheats = function()
         end
     end
 
+    filter_insert(cheats, M._loaded_cheats, nil, true)
     return cheats
 end
 
 -- Use a floating window to show cheatsheets in a syntax highlighted buffer
+-- NOTE: Does *not* show cheats added using `add_cheats` yet (TODO)
 M.show_cheatsheet_float = function()
     -- handle to an unlisted scratch buffer
     local bufhandle = vim.api.nvim_create_buf(false, true)
