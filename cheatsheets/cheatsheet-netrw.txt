@@ -1,0 +1,21 @@
+## netrw-vim
+File explorer (Netrw)                | :Ex
+Open file/directory                  | <CR>
+Open in horizontal split             | o
+Open in vertical split               | v
+Open in a new tab                    | t
+Open with external app               | x
+New file here                        | %
+New directory here                   | d
+Mark file                            | mf
+Mark using shell glob                | mr
+Unmark all                           | mu
+Edit marked files                    | me
+Rename file(s)                       | R
+Delete file(s)                       | D
+Refresh file list                    | <C-l>
+File info                            | qf
+Toggle hidden files                  | a
+Switch file list format              | i
+Exit file explorer                   | :Rex
+

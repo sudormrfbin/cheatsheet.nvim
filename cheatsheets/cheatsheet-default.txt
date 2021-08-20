@@ -7,7 +7,6 @@ Split open (horizontal)              | :sp [file]
 Split open (vertical)                | :vs [file]
 Reopen last opened file              | <C-o><C-o>
 Open with external app               | gx
-File explorer (Netrw)                | :Ex
 Close file                           | :bd
 Close all                            | :%bd
 Save                                 | :w
@@ -28,26 +27,6 @@ Quit without saving                  | :q!
 Quit without saving                  | ZQ
 Save all and exit Vim                | :xa
 Exit Vim without saving              | :qa!
-
-## netrw-vim
-Open file/directory                  | <CR>
-Open in horizontal split             | o
-Open in vertical split               | v
-Open in a new tab                    | t
-Open with external app               | x
-New file here                        | %
-New directory here                   | d
-Mark file                            | mf
-Mark using shell glob                | mr
-Unmark all                           | mu
-Edit marked files                    | me
-Rename file(s)                       | R
-Delete file(s)                       | D
-Refresh file list                    | <C-l>
-File info                            | qf
-Toggle hidden files                  | a
-Switch file list format              | i
-Exit file explorer                   | :Rex
 
 ## edit-vim
 Back to normal mode                  | <Esc>
