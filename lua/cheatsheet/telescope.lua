@@ -3,8 +3,7 @@ local actions_state = require('telescope.actions.state')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 
-local config = require('telescope.config')
-local telescope_utils = require('telescope.utils')
+local config = require('telescope.config').values
 local entry_display = require('telescope.pickers.entry_display')
 
 local cheatsheet = require('cheatsheet')
@@ -35,9 +34,11 @@ M.pick_cheat = function(telescope_opts, opts)
                     -- But the cheatcode is what we *don't* know and the description is
                     -- what we already know. So show description first for better UX.
 
-                    -- config.width was deprecated in favor of config.layout_config.width
+                    -- * config.width was deprecated in favor of config.layout_config.width
                     -- https://github.com/nvim-telescope/telescope.nvim/commit/5a53ec5c2fdab10ca8775d3979b1a85e63d57953
-                    local width = config.values.width or config.values.layout_config.width
+                    -- * config.layout_config was changed to move width and height to individual layout_strategy configs
+                    -- https://github.com/nvim-telescope/telescope.nvim/pull/1039/files#diff-4936325bfc521d7cffc09fe0156becd4a4ba2ed169431c94bd63669fe0cc1a2aL79-L80
+                    local width = config.width or config.layout_config.width or config.layout_config[config.layout_strategy].width
                     local cols = vim.o.columns
                     local tel_win_width
                     -- width = 80 -> column width, width = 0.7 -> ratio
@@ -141,7 +142,7 @@ M.pick_cheat = function(telescope_opts, opts)
                 )
                 return true
             end,
-            sorter = config.values.generic_sorter(telescope_opts),
+            sorter = config.generic_sorter(telescope_opts),
         }
     ):find()
 end
