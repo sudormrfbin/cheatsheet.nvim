@@ -111,6 +111,41 @@ M.pick_cheat = function(telescope_opts, opts)
                         -- ":set shiftwidth={n}" -> ":set shiftwidth="
                         local command = cheat:match("^:[^%[%{]+")
                         if command ~= nil then
+                            vim.api.nvim_exec(command, true)
+                        else
+                            vim.api.nvim_echo(
+                                { -- text, highlight group
+                                    { "Cheatsheet [", "" },
+                                    { section, "cheatMetadataSection" },
+                                    { "]: Press ", "" }, { cheat, "cheatCode" },
+                                    { " to ", "" },
+                                    { description:lower(), "cheatDescription" },
+                                }, false, {}
+                            )
+                        end
+                    end
+                )
+                map(
+                    'i', '<C-r>', function()
+                        local selection = actions_state.get_selected_entry()
+                        local section = selection.value.section
+                        local description = selection.value.description
+                        local cheat = selection.value.cheatcode
+
+                        actions.close(prompt_bufnr)
+
+                        if string.len(cheat) == 1 then
+                            print("Cheatsheet: No command could be executed")
+                            return
+                        end
+
+                        -- Extract command from cheat, eg:
+                        -- ":%bdelete" -> No change
+                        -- ":set hls!" -> No change
+                        -- ":edit [file]" -> ":edit "
+                        -- ":set shiftwidth={n}" -> ":set shiftwidth="
+                        local command = cheat:match("^:[^%[%{]+")
+                        if command ~= nil then
                             vim.api.nvim_feedkeys(command, "n", true)
                         else
                             vim.api.nvim_echo(
