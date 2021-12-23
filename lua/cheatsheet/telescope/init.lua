@@ -16,7 +16,6 @@ local M = {}
 --     cheatMetadataSection, cheatDescription, cheatCode
 -- Mappings:
 --     <C-E> - Edit user cheatsheet in new buffer
---     <C-D> - Toggle including the default cheatsheat
 --     <C-Y> - Yank the cheatcode
 M.pick_cheat = function(telescope_opts, opts)
     telescope_opts = telescope_opts or {}
@@ -90,59 +89,11 @@ M.pick_cheat = function(telescope_opts, opts)
                 end,
             },
             attach_mappings = function(prompt_bufnr, map)
-                actions.select_default:replace(
-                    function()
-                        local selection = actions_state.get_selected_entry()
-                        local section = selection.value.section
-                        local description = selection.value.description
-                        local cheat = selection.value.cheatcode
+                local mappings = require('cheatsheet.config').options.telescope_mappings
+                for keybind, action in pairs(mappings) do
+                    map('i', keybind, function() action(prompt_bufnr) end)
+                end
 
-                        actions.close(prompt_bufnr)
-
-                        if string.len(cheat) == 1 then
-                            print("Cheatsheet: No command could be executed")
-                            return
-                        end
-
-                        -- Extract command from cheat, eg:
-                        -- ":%bdelete" -> No change
-                        -- ":set hls!" -> No change
-                        -- ":edit [file]" -> ":edit "
-                        -- ":set shiftwidth={n}" -> ":set shiftwidth="
-                        local command = cheat:match("^:[^%[%{]+")
-                        if command ~= nil then
-                            vim.api.nvim_feedkeys(command, "n", true)
-                        else
-                            vim.api.nvim_echo(
-                                { -- text, highlight group
-                                    { "Cheatsheet [", "" },
-                                    { section, "cheatMetadataSection" },
-                                    { "]: Press ", "" }, { cheat, "cheatCode" },
-                                    { " to ", "" },
-                                    { description:lower(), "cheatDescription" },
-                                }, false, {}
-                            )
-                        end
-                    end
-                )
-                map(
-                    'i', '<C-E>', function()
-                        actions.close(prompt_bufnr)
-                        utils.edit_user_cheatsheet()
-                    end
-                )
-                map(
-                    'i', '<C-Y>', function()
-                        actions.close(prompt_bufnr)
-                        local selection = actions_state.get_selected_entry()
-                        local cheatcode = selection.value.cheatcode
-                        vim.fn.setreg("0", cheatcode)
-                        vim.api.nvim_echo(
-                            { { "Yanked ", "" }, { cheatcode, "cheatCode" } },
-                                false, {}
-                        )
-                    end
-                )
                 return true
             end,
             sorter = config.generic_sorter(telescope_opts),

@@ -21,16 +21,20 @@ local defaults = {
     -- don't have the plugin installed (searches runtimepath for
     -- same directory name)
     include_only_installed_plugins = true,
+    -- Key mappings bound inside the telescope window
+    telescope_mappings = {
+        ['<CR>'] = require('cheatsheet.telescope.actions').select_or_fill_commandline,
+        ['<A-CR>'] = require('cheatsheet.telescope.actions').select_or_execute,
+        ['<C-Y>'] = require('cheatsheet.telescope.actions').copy_cheat_value,
+        ['<C-E>'] = require('cheatsheet.telescope.actions').edit_user_cheatsheet,
+    }
 }
 
 M.options = {}
 
 function M.setup(opts)
     opts = opts or {}
-    for key, val in pairs(defaults) do
-        if opts[key] == nil then opts[key] = val end
-    end
-    M.options = opts
+    M.options = vim.tbl_deep_extend("force", defaults, opts)
 end
 
 M.setup()
