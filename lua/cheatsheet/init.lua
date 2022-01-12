@@ -20,16 +20,16 @@ M.get_cheatsheet_files = function(opts)
     if opts.include_only_installed_plugins then
         local rtp_dirs = {}
         for _, dir in pairs(vim.api.nvim_list_runtime_paths()) do
-            table.insert(rtp_dirs, dir:match(".+/(.+)"))
+            table.insert(rtp_dirs, dir:match(".+[\\/](.+)$"))
         end
         plugin_include = { enabled = rtp_dirs }
     else
         plugin_include = true
     end
 
-    local cheatsheet_name_pat = '.+/cheatsheets/cheatsheet%-(.+)%.txt'
+    local cheatsheet_name_pat = '.+[\\/]cheatsheets[\\/]cheatsheet%-(.+)%.txt'
     local cheatsheet_plugin_name_pat =
-        '.+/cheatsheets/plugins/cheatsheet%-(.+)%.txt'
+        '.+[\\/]cheatsheets[\\/]plugins[\\/]cheatsheet%-(.+)%.txt'
 
     local bundled_plugins = {}
     filter_insert(
