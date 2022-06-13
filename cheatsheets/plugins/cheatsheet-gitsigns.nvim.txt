@@ -1,11 +1,15 @@
 ## gitsigns @git
 Stage hunk                               | <leader>hs
 Undo stage hunk                          | <leader>hu
-Stage hunk                               | <leader>hs
 Reset hunk                               | <leader>hr
 Preview hunk                             | <leader>hp
+Stage buffer                             | <leader>hS
 Reset buffer                             | <leader>hR
 Blame current line                       | <leader>hb
+Toggle blame current line                | <leader>tb
+Diff this                                | <leader>hd
+Diff home                                | <leader>hD
 Next hunk                                | ]c
-Previous hunk                            | ]c
+Previous hunk                            | [c
+Toggle show deleted                      | <leader>td
 Hunk text object                         | ih
