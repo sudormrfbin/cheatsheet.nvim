@@ -1,0 +1,22 @@
+## neogit @git
+Toggle diff                                        | <T>
+Set a foldlevel                                    | {1-4}
+Command history                                    | $
+Branch popup                                       | b
+Stage (also supports staging selection/hunk)       | s
+Stage unstaged changes                             | S
+Stage Everything                                   | <C-s>
+Unstage (also supports staging selection/hunk)     | u
+Unstage staged changes                             | U
+Open commit popup                                  | c
+Open rebase popup                                  | r
+Open log popup                                     | L
+Open pull popup                                    | p
+Open push popup                                    | P
+Open stash popup                                   | Z
+Open help popup                                    | ?
+Discard changes (also supports discarding hunks)   | x
+Go to file                                         | <CR>
+Refresh Buffer                                     | <C-r>
+Open diffview.nvim at hovered file                 | d
+
