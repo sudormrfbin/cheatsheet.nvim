@@ -1,0 +1,16 @@
+## marks  @bookmark
+Set mark {x}.                                  | m{x}
+Set the next available alphabetical mark.      | m,
+Toggle the next available mark.                | m;
+Delete mark {x}.                               | dm{x}
+Delete all marks on the current line.          | dm-
+Delete all marks in the current buffer.        | dm<SPC>
+Move to next mark.                             | m]
+Move to previous mark.                         | m[
+Preview mark.                                  | m:
+Add a bookmark from bookmark group{0-9}.       | m{0-9}
+Delete the bookmark under the cursor.          | dm=
+Delete all bookmarks from bookmark group{0-9}. | dm{0-9}
+Move to next bookmark of same type.            | m}
+Move to previous bookmark of same type.        | m{
+
