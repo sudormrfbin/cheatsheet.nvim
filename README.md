@@ -101,6 +101,7 @@ Your cheatsheet file is a simple text file with the name `cheatsheet.txt` found 
 | `<C-E>`            | Edit user cheatsheet à la `:CheatsheetEdit` |
 | `<C-Y>`            | Yank the cheatcode                          |
 | `Enter`            | Fill in the command line; see below         |
+| `Alt+Enter`        | Execute the command                         |
 
 #### Auto Fill Commands From Telescope
 
