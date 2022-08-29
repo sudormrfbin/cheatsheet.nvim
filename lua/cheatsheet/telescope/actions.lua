@@ -11,22 +11,28 @@ local function select_current_item(prompt_bufnr, execute)
 
     t_actions.close(prompt_bufnr)
 
-    if string.len(cheat) == 1 then
+    if string.len(cheat) == 0 then
         print("Cheatsheet: No command could be executed")
         return
     end
 
-    -- Extract command from cheat, eg:
-    -- ":%bdelete" -> No change
-    -- ":set hls!" -> No change
-    -- ":edit [file]" -> ":edit "
-    -- ":set shiftwidth={n}" -> ":set shiftwidth="
-    local command = cheat:match("^:[^%[%{]+")
-    if command ~= nil then
-        if execute then
-            vim.api.nvim_command(cheat)
+    if execute then
+        if cheat:find(":") then
+            -- Extract command from cheat, eg:
+            -- ":%bdelete" -> No change
+            -- ":set hls!" -> No change
+            -- ":edit [file]" -> ":edit "
+            -- ":set shiftwidth={n}" -> ":set shiftwidth="
+            local command = cheat:match("^:[^%[%{]+")
+            if command == cheat then
+                vim.api.nvim_command(cheat)
+            else
+                vim.api.nvim_feedkeys(command, "n", true)
+            end
         else
-            vim.api.nvim_feedkeys(command, "n", true)
+            vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes(cheat, true, true, true)
+                , "x", false)
         end
     else
         vim.api.nvim_echo(
