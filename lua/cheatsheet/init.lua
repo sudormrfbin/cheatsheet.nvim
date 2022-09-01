@@ -88,11 +88,11 @@ local function parse_map_command(command)
     mode = mode == "m" and "n" or mode
     for _, arg in ipairs(parsed.args) do
         -- if not special argument. see `:h :map-arguments`
-        if  arg ~= "<buffer>" or 
-            arg ~= "<nowait>" or 
-            arg ~= "<silent>" or
-            arg ~= "<script>" or
-            arg ~= "<expr>" or
+        if  arg ~= "<buffer>" and 
+            arg ~= "<nowait>" and 
+            arg ~= "<silent>" and
+            arg ~= "<script>" and
+            arg ~= "<expr>" and
             arg ~= "<unique>" then
             return { mode = parsed.cmd:sub(1,1), lhs = arg }
         end
