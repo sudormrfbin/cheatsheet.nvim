@@ -74,6 +74,85 @@ M.add_cheat = function(description, cheatcode, section, tags)
     )
 end
 
+
+-- Parses command and returns command mode for which-key and left hand side of mapping
+local function parse_map_command(command)
+    parsed = vim.api.nvim_parse_cmd(command, {})
+    -- use the first character of the command as mode for which-key.
+    -- for example, nmap -> n, inoremap -> i
+    mode = parsed.cmd:sub(1,1)
+    -- note: which-key currently doesn't support nvo mode.
+    -- hence I use 'n' instead of 'm'. this also means that for 
+    -- 'noremap' command I'm already good with 'n'.
+    -- see: https://github.com/folke/which-key.nvim/issues/267
+    mode = mode == "m" and "n" or mode
+    for _, arg in ipairs(parsed.args) do
+        -- if not special argument. see `:h :map-arguments`
+        if  arg ~= "<buffer>" or 
+            arg ~= "<nowait>" or 
+            arg ~= "<silent>" or
+            arg ~= "<script>" or
+            arg ~= "<expr>" or
+            arg ~= "<unique>" then
+            return { mode = parsed.cmd:sub(1,1), lhs = arg }
+        end
+    end
+    return nil
+end
+
+
+-- Checks if module can be loaded.
+-- src: https://stackoverflow.com/a/15434737
+local function is_module_available(name)
+  if package.loaded[name] then
+    return true
+  else
+    for _, searcher in ipairs(package.searchers or package.loaders) do
+      local loader = searcher(name)
+      if type(loader) == 'function' then
+        package.preload[name] = loader
+        return true
+      end
+    end
+    return false
+  end
+end
+
+
+-- Add description that will be added to cheatsheet.nvim and which-key.nvim.
+-- @param mode: one char string for which-key
+-- @param lhs: string with left hand side for mapping
+-- @param description: string for both cheatsheet.nvim and which-key.nvim
+-- @param section: string for cheatsheet.nvim
+-- @param tags: array of alternative names for the section for cheatsheet.nvim
+M.add_map_description = function(mode, lhs, description, section, tags)
+    section = section or "default"
+    tags = tags or {}
+    M.add_cheat(description, lhs, section, tags)
+    if not is_module_available("which-key") then
+        return
+    end
+    wk = require("which-key")
+    wk.register({ [lhs] = description }, { mode = mode })
+end
+
+
+-- Create a mapping with description that will be added to cheatsheet.nvim and which-key.nvim.
+-- @param map_command: string with a map command (see `:help :map-commands`)
+-- @param description: string for both cheatsheet.nvim and which-key.nvim
+-- @param section: string for cheatsheet.nvim
+-- @param tags: array of alternative names for the section for cheatsheet.nvim
+M.add_map = function(map_command, description, section, tags)
+    vim.api.nvim_command(map_command)
+    parsed = parse_map_command(map_command)
+    if parsed == nil then
+        print('cheatsheet error: failed to parse command `'..map_command..'`')
+        return
+    end
+    M.add_map_description(parsed.mode, parsed.lhs, description, section, tags)
+end
+
+
 -- Aggregates cheats from cheatsheets and returns a structured repr.
 -- Also included cheats from _loaded_cheats.
 -- Ignores comments and newlines (except for metadata comments).

@@ -249,6 +249,68 @@ and displayed on `:Cheatsheet`.  You don't have to add the file to your repo
 simple enough to be opened and read normally and can serve as a great
 quickstart for users.
 
+## Add cheatsheets at runtime
+
+You can use:
+```
+-- Add a cheat which will be shown alongside cheats loaded from cheatsheet files.
+-- @param description: string
+-- @param cheatcode: string
+-- @param section: string
+-- @param tags: array of alternative names for the section
+M.add_cheat = function(description, cheatcode, section, tags)
+```
+to add cheatsheets dynamically at run time.
+
+For example,
+```
+call v:lua.require("cheatsheet").add_cheat("Copy to system clipboard", "<leader>c", "default", [ "my" ])
+```
+
+## which-key.nvim integration
+
+You can use
+```
+-- Create a mapping with description that will be added to cheatsheet.nvim and which-key.nvim.
+-- @param map_command: string with a map command (see `:help :map-commands`)
+-- @param description: string for both cheatsheet.nvim and which-key.nvim
+-- @param section: string for cheatsheet.nvim
+-- @param tags: array of alternative names for the section for cheatsheet.nvim
+M.add_map = function(map_command, description, section, tags)
+```
+to create mappings with descriptions. The mapping command will be executed right 
+away and the description will be added to both cheatsheet.nvim and which-key.nvim.
+
+For example, add to your `.vimrc`:
+```
+function AddMap(command, description, ...)
+    let section = get(a:, 1, 'default')
+    let tags = get(a:, 2, [])
+    call v:lua.require("cheatsheet").add_map(a:command, a:description, section, tags)
+endfunction
+```
+and then
+```
+call AddMap("vnoremap <leader>c \"+y", "Copy to system clipboard")
+```
+Note that you have to use escapes for quotes and backslashes.
+
+If you don't want to deal with escapes then you can use
+```
+-- Add description that will be added to cheatsheet.nvim and which-key.nvim.
+-- @param mode: one char string for which-key
+-- @param lhs: string with left hand side for mapping
+-- @param description: string for both cheatsheet.nvim and which-key.nvim
+-- @param section: string for cheatsheet.nvim
+-- @param tags: array of alternative names for the section for cheatsheet.nvim
+M.add_map_description = function(mode, lhs, description, section, tags)
+```
+to add only cheat description and use it like this:
+```
+vnoremap <leader>c "+y
+call v:lua.require("cheatsheet").add_map_description("v", "<leader>c", "Copy to system clipboard")
+```
+
 ## Acknowledgements
 
 This plugin was inspired by (and borrowed some code and the default cheatsheat)
