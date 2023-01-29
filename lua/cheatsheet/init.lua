@@ -8,8 +8,9 @@ local M = {}
 
 M.setup = function(opts) config.setup(opts) end
 
--- Get `cheatsheet.txt` files from any directory in runtimepath
--- Inlcudes bundled cheatsheets if configured to do so.
+-- Includes the user's `cheatsheet.txt` file.
+-- Includes `cheatsheet.txt` files from any directory in runtimepath if configured to do so.
+-- Includes bundled cheatsheets if configured to do so.
 -- @param *opts* config.options like table
 -- @return array of filepaths
 M.get_cheatsheet_files = function(opts)
@@ -37,9 +38,16 @@ M.get_cheatsheet_files = function(opts)
             cheatsheet_plugin_name_pat, plugin_include
     )
 
-    local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
-    local bundled = utils.get_bundled_cheatsheets()
-    filter_insert(cheats, bundled, cheatsheet_name_pat, opts.bundled_cheatsheets)
+    -- Includes user's cheatsheet.
+    local cheats = { utils.get_user_cheatsheet() }
+
+    -- Includes rtp cheatsheets (if configured to do so).
+    local rtp_cheatsheets = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
+    filter_insert(cheats, rtp_cheatsheets, cheatsheet_name_pat, opts.rtp_cheatsheets)
+
+    -- Includes bundled cheatsheets (if configured to do so).
+    local bundled_cheatsheets = utils.get_bundled_cheatsheets()
+    filter_insert(cheats, bundled_cheatsheets, cheatsheet_name_pat, opts.bundled_cheatsheets)
 
     filter_insert(
         cheats, bundled_plugins, cheatsheet_plugin_name_pat,
