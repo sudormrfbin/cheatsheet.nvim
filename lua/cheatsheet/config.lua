@@ -3,6 +3,9 @@ local M = {}
 -- NOTE: Watch out for bugs in cheatsheet.get_cheatsheet_files if
 -- defaults is modified in the future
 local defaults = {
+    -- Whether to show rtp cheatsheets
+    rtp_cheatsheets = true,
+
     -- Whether to show bundled cheatsheets
 
     -- For generic cheatsheets like default, unicode, nerd-fonts, etc

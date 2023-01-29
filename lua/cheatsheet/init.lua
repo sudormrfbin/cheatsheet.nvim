@@ -37,9 +37,16 @@ M.get_cheatsheet_files = function(opts)
             cheatsheet_plugin_name_pat, plugin_include
     )
 
-    local cheats = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
-    local bundled = utils.get_bundled_cheatsheets()
-    filter_insert(cheats, bundled, cheatsheet_name_pat, opts.bundled_cheatsheets)
+    -- Load user's cheatsheet.
+    local cheats = { utils.get_user_cheatsheet() }
+
+    -- Load rtp cheatsheets (if configured to do so).
+    local rtp_cheatsheets = vim.api.nvim_get_runtime_file("cheatsheet.txt", true)
+    filter_insert(cheats, rtp_cheatsheets, cheatsheet_name_pat, opts.rtp_cheatsheets)
+
+    -- Load bundled cheatsheets (if configured to do so).
+    local bundled_cheatsheets = utils.get_bundled_cheatsheets()
+    filter_insert(cheats, bundled_cheatsheets, cheatsheet_name_pat, opts.bundled_cheatsheets)
 
     filter_insert(
         cheats, bundled_plugins, cheatsheet_plugin_name_pat,

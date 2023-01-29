@@ -148,6 +148,9 @@ This is the default configuration:
 
 ```lua
 require("cheatsheet").setup({
+    -- Whether to show rtp cheatsheets
+    rtp_cheatsheets = true,
+
     -- Whether to show bundled cheatsheets
 
     -- For generic cheatsheets like default, unicode, nerd-fonts, etc
