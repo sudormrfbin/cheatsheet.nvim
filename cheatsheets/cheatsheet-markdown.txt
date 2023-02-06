@@ -5,10 +5,11 @@ Horizontal rule              | ---
 Line break <br>              | Two spaces at line end
 Section link to 'My Heading' | [text](#my-heading)
 Bold text                    | **bold text**
-Italic text                  | *italicized text*
+Italic text                  | *italic text*
 Blockquote                   | > blockquote
 Ordered list                 | 1. First item
 Unordered list               | - First item
-Code                         | `some code` or <code>some code</code>
-Open fenced code block       | ```[language] ()e.g. ```shell or ```python)
+Inline code (tick)           | `some code`
+Inline code (code tag)       | <code>some code</code>
+Open fenced code block       | ```[language] (e.g. ```shell or ```python)
 Close fenced code block      | ```
