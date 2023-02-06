@@ -1,6 +1,15 @@
 ## markdown
 Links                        | [text in for link](http://example.com)
-Images                       | [alt text](http://example.com/image.png "image title")
+Images                       | ![alt text](http://example.com/image.png "image title")
 Horizontal rule              | ---
 Line break <br>              | Two spaces at line end
-Section link to # My Heading | [text](#my-heading)
+Section link to 'My Heading' | [text](#my-heading)
+Bold text                    | **bold text**
+Italic text                  | *italic text*
+Blockquote                   | > blockquote
+Ordered list                 | 1. First item
+Unordered list               | - First item
+Inline code (tick)           | `some code`
+Inline code (code tag)       | <code>some code</code>
+Open fenced code block       | ```[language] (e.g. ```shell or ```python)
+Close fenced code block      | ```
