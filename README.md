@@ -223,7 +223,7 @@ require("cheatsheet").setup({
 
     ```
     Open cheatsheet | <leader>?
-    Open cheatsheet in floating window | :CheatSheet!
+    Open cheatsheet in floating window | :Cheatsheet!
 
     View mappings | :map [mapping]
     Set text width to {n} | :set tw={n}
